@@ -114,12 +114,18 @@
 </div>
 @endif
 
+@if($page_data->skill_status == 'Show')
 <div class="home-skill">
     <div class="container">
         <div class="row">
             <div class="col-md-12 heading">
-                <h2>My Skill</h2>
-                <h3>My Expertise Area</h3>
+                @if($page_data->skill_subtitle!='')
+                <h2>{{ $page_data->skill_subtitle }}</h2>
+                @endif
+
+                @if($page_data->skill_title!='')
+                <h3>{{ $page_data->skill_title }}</h3>
+                @endif
             </div>
             <div class="col-md-6 wow fadeInLeft">
 
@@ -167,6 +173,7 @@
         </div>
     </div>
 </div>
+@endif
 
 
 <div class="home-qualification">

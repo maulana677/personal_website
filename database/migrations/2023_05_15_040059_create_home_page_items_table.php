@@ -40,6 +40,9 @@ return new class extends Migration
             $table->text('about_icon5_url')->nullable();
             $table->text('about_photo');
             $table->text('about_status');
+            $table->text('skill_subtitle')->nullable();
+            $table->text('skill_title')->nullable();
+            $table->text('skill_status');
             $table->timestamps();
         });
     }
