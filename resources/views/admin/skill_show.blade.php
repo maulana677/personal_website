@@ -2,6 +2,10 @@
 
 @section('heading', 'View Skills')
 
+@section('rightside_button')
+    <a href="{{ route('admin_skill_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+@endsection
+
 @section('main_content')
 <div class="section-body">
     <div class="row">
