@@ -38,7 +38,8 @@ return new class extends Migration
             $table->text('about_icon4_url')->nullable();
             $table->text('about_icon5')->nullable();
             $table->text('about_icon5_url')->nullable();
-            $table->text('about_phone');
+            $table->text('about_photo');
+            $table->text('about_status');
             $table->timestamps();
         });
     }
