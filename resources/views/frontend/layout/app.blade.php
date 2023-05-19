@@ -55,6 +55,8 @@
     </a>
 
     @include('frontend.layout.scripts')
+
+    @yield('skill_animation')
     
 </body>
 </html>
