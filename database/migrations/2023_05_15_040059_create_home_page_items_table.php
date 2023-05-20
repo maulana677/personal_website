@@ -43,6 +43,11 @@ return new class extends Migration
             $table->text('skill_subtitle')->nullable();
             $table->text('skill_title')->nullable();
             $table->text('skill_status');
+            $table->text('qualification_subtitle')->nullable();
+            $table->text('qualification_title')->nullable();
+            $table->text('education_title')->nullable();
+            $table->text('experience_title')->nullable();
+            $table->text('qualification_status');
             $table->timestamps();
         });
     }

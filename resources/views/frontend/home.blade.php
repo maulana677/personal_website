@@ -153,7 +153,7 @@
 </div>
 @endif
 
-
+@if($page_data->qualification_status == 'Show')
 <div class="home-qualification">
     <div class="container">
         <div class="row">
@@ -210,6 +210,7 @@
         </div>
     </div>
 </div>
+@endif
 
 
 <div class="service">
