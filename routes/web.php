@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminEducationController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminHomePageController;
 use App\Http\Controllers\Admin\AdminLoginController;
@@ -61,3 +62,11 @@ Route::get('/admin/skill/delete/{id}', [AdminSkillController::class, 'delete'])-
 //Education and Experience Backend
 Route::get('/admin/home-qualification', [AdminHomePageController::class, 'qualification'])->name('admin_home_qualification')->middleware('admin:admin');
 Route::post('/admin/home-qualification-update', [AdminHomePageController::class, 'qualification_update'])->name('admin_home_qualification_update')->middleware('admin:admin');
+
+//Education
+Route::get('/admin/education/show', [AdminEducationController::class, 'index'])->name('admin_skill_show')->middleware('admin:admin');
+Route::get('/admin/education/add', [AdminEducationController::class, 'add'])->name('admin_skill_add')->middleware('admin:admin');
+Route::post('/admin/education/submit', [AdminEducationController::class, 'store'])->name('admin_skill_submit')->middleware('admin:admin');
+Route::get('/admin/education/edit/{id}', [AdminEducationController::class, 'edit'])->name('admin_skill_edit')->middleware('admin:admin');
+Route::post('/admin/education/update/{id}', [AdminEducationController::class, 'update'])->name('admin_skill_update')->middleware('admin:admin');
+Route::get('/admin/education/delete/{id}', [AdminEducationController::class, 'delete'])->name('admin_skill_delete')->middleware('admin:admin');
