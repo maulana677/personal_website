@@ -3,7 +3,7 @@
 @section('heading', 'View Educations')
 
 @section('rightside_button')
-    <a href="{{ route('admin_skill_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+    <a href="{{ route('admin_education_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
 @endsection
 
 @section('main_content')
@@ -17,9 +17,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
-                                    <th>Percentage</th>
-                                    <th>Side</th>
+                                    <th>Degree</th>
+                                    <th>Institute</th>
+                                    <th>Time</th>
+                                    <th>Order</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -27,12 +28,13 @@
                                 @foreach($all_data as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->percentage }}</td>
-                                        <td>{{ $item->side }}</td>
+                                        <td>{{ $item->degree }}</td>
+                                        <td>{{ $item->institute }}</td>
+                                        <td>{{ $item->time }}</td>
+                                        <td>{{ $item->item_order }}</td>
                                         <td class="pt_10 pb_10">
-                                            <a href="{{ route('admin_skill_edit', $item->id) }}" class="btn btn-primary">Edit</a>
-                                            <a href="{{ route('admin_skill_delete', $item->id ) }}" class="btn btn-danger" onClick="return confirm('Are you sure?')">Delete</a>
+                                            <a href="{{ route('admin_education_edit', $item->id) }}" class="btn btn-primary">Edit</a>
+                                            <a href="{{ route('admin_education_delete', $item->id ) }}" class="btn btn-danger" onClick="return confirm('Are you sure?')">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

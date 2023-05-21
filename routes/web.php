@@ -64,9 +64,9 @@ Route::get('/admin/home-qualification', [AdminHomePageController::class, 'qualif
 Route::post('/admin/home-qualification-update', [AdminHomePageController::class, 'qualification_update'])->name('admin_home_qualification_update')->middleware('admin:admin');
 
 //Education
-Route::get('/admin/education/show', [AdminEducationController::class, 'index'])->name('admin_skill_show')->middleware('admin:admin');
-Route::get('/admin/education/add', [AdminEducationController::class, 'add'])->name('admin_skill_add')->middleware('admin:admin');
-Route::post('/admin/education/submit', [AdminEducationController::class, 'store'])->name('admin_skill_submit')->middleware('admin:admin');
-Route::get('/admin/education/edit/{id}', [AdminEducationController::class, 'edit'])->name('admin_skill_edit')->middleware('admin:admin');
-Route::post('/admin/education/update/{id}', [AdminEducationController::class, 'update'])->name('admin_skill_update')->middleware('admin:admin');
-Route::get('/admin/education/delete/{id}', [AdminEducationController::class, 'delete'])->name('admin_skill_delete')->middleware('admin:admin');
+Route::get('/admin/education/show', [AdminEducationController::class, 'index'])->name('admin_education_show')->middleware('admin:admin');
+Route::get('/admin/education/add', [AdminEducationController::class, 'add'])->name('admin_education_add')->middleware('admin:admin');
+Route::post('/admin/education/submit', [AdminEducationController::class, 'store'])->name('admin_education_submit')->middleware('admin:admin');
+Route::get('/admin/education/edit/{id}', [AdminEducationController::class, 'edit'])->name('admin_education_edit')->middleware('admin:admin');
+Route::post('/admin/education/update/{id}', [AdminEducationController::class, 'update'])->name('admin_education_update')->middleware('admin:admin');
+Route::get('/admin/education/delete/{id}', [AdminEducationController::class, 'delete'])->name('admin_education_delete')->middleware('admin:admin');
