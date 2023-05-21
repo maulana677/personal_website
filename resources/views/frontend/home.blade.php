@@ -172,7 +172,6 @@
                             <div class="v-line"></div>
                         </div>
                     @endforeach
-
                 </div>
             </div>
             <div class="col-md-6">
