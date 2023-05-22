@@ -277,28 +277,30 @@
 </div>
 
 
-<div class="home-counter">
+@if($page_data->counter_status == 'Show')
+<div class="home-counter" style="background-image:url({{ asset('uploads/'.$page_data->counter_background) }})">
     <div class="container">
         <div class="row counter-items">
             <div class="col-md-3 counter-item">
-                <div class="counter">500</div>
-                <div class="text">Clients</div>
+                <div class="counter">{{ $page_data->counter1_number }}</div>
+                <div class="text">{{ $page_data->counter1_name }}</div>
             </div>
             <div class="col-md-3 counter-item">
-                <div class="counter">200</div>
-                <div class="text">Projects</div>
+                <div class="counter">{{ $page_data->counter2_number }}</div>
+                <div class="text">{{ $page_data->counter2_name }}</div>
             </div>
             <div class="col-md-3 counter-item">
-                <div class="counter">5000</div>
-                <div class="text">Students</div>
+                <div class="counter">{{ $page_data->counter3_number }}</div>
+                <div class="text">{{ $page_data->counter3_name }}</div>
             </div>
             <div class="col-md-3 counter-item">
-                <div class="counter">80</div>
-                <div class="text">Products</div>
+                <div class="counter">{{ $page_data->counter4_number }}</div>
+                <div class="text">{{ $page_data->counter4_name }}</div>
             </div>
         </div>
     </div>
 </div>
+@endif
 
 <div class="portfolio">
     <div class="container">
