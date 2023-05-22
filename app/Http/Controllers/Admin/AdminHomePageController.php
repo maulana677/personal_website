@@ -140,4 +140,55 @@ class AdminHomePageController extends Controller
 
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
+
+    //--------------------------------------------------- Counter --------------------------------------------//
+
+    public function counter()
+    {
+        $page_data = HomePageItem::where('id',1)->first();
+        return view('admin.home_counter_show', compact('page_data'));
+    }
+
+    public function counter_update(Request $request)
+    {
+        $page_data = HomePageItem::where('id',1)->first();
+
+        $request->validate([
+            'counter1_number' => 'required',
+            'counter1_name' => 'required',
+            'counter2_number' => 'required',
+            'counter2_name' => 'required',
+            'counter3_number' => 'required',
+            'counter3_name' => 'required',
+            'counter4_number' => 'required',
+            'counter4_name' => 'required',
+        ]);
+
+        if ($request->hasFile('counter_background')) {
+            $request->validate([
+                'counter_background' => 'image|mimes:jpg,jpeg,png,gif'
+            ]);
+            unlink(public_path('uploads/'.$page_data->counter_background));
+
+            $ext = $request->file('counter_background')->extension();
+            $final_name = 'counter_background'.'.'.$ext;
+
+            $request->file('counter_background')->move(public_path('uploads/'),$final_name);
+
+            $page_data->counter_background = $final_name;
+        }
+
+        $page_data->counter1_number = $request->counter1_number;
+        $page_data->counter1_name = $request->counter1_name;
+        $page_data->counter2_number = $request->counter2_number;
+        $page_data->counter2_name = $request->counter2_name;
+        $page_data->counter3_number = $request->counter3_number;
+        $page_data->counter3_name = $request->counter3_name;
+        $page_data->counter4_number = $request->counter4_number;
+        $page_data->counter4_name = $request->counter4_name;
+        $page_data->counter_status = $request->counter_status;
+        $page_data->update();
+
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
 }

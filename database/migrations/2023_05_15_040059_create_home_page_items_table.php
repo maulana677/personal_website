@@ -48,6 +48,16 @@ return new class extends Migration
             $table->text('education_title')->nullable();
             $table->text('experience_title')->nullable();
             $table->text('qualification_status');
+            $table->text('counter1_number');
+            $table->text('counter1_name');
+            $table->text('counter2_number');
+            $table->text('counter2_name');
+            $table->text('counter3_number');
+            $table->text('counter3_name');
+            $table->text('counter4_number');
+            $table->text('counter4_name');
+            $table->text('counter_background');
+            $table->text('counter_status');
             $table->timestamps();
         });
     }
