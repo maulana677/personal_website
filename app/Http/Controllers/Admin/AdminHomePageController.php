@@ -191,4 +191,38 @@ class AdminHomePageController extends Controller
 
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
+
+    //--------------------------------------------------- Testimonial --------------------------------------------//
+
+    public function testimonial()
+    {
+        $page_data = HomePageItem::where('id',1)->first();
+        return view('admin.home_testimonial_show', compact('page_data'));
+    }
+
+    public function testimonial_update(Request $request)
+    {
+        $page_data = HomePageItem::where('id',1)->first();
+
+        if ($request->hasFile('testimonial_background')) {
+            $request->validate([
+                'testimonial_background' => 'image|mimes:jpg,jpeg,png,gif'
+            ]);
+            unlink(public_path('uploads/'.$page_data->testimonial_background));
+
+            $ext = $request->file('testimonial_background')->extension();
+            $final_name = 'testimonial_background'.'.'.$ext;
+
+            $request->file('testimonial_background')->move(public_path('uploads/'),$final_name);
+
+            $page_data->testimonial_background = $final_name;
+        }
+
+        $page_data->testimonial_subtitle = $request->testimonial_subtitle;
+        $page_data->testimonial_title = $request->testimonial_title;
+        $page_data->testimonial_status = $request->testimonial_status;
+        $page_data->update();
+
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
 }

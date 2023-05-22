@@ -58,6 +58,10 @@ return new class extends Migration
             $table->text('counter4_name');
             $table->text('counter_background');
             $table->text('counter_status');
+            $table->text('testimonial_subtitle')->nullable();
+            $table->text('testimonial_title')->nullable();
+            $table->text('testimonial_background');
+            $table->text('testimonial_status');
             $table->timestamps();
         });
     }

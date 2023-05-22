@@ -397,13 +397,18 @@
     </div>
 </div>
 
-
-<div class="home-testimonial">
+@if($page_data->testimonial_status == 'Show')
+<div class="home-testimonial" style="background-image:url({{ asset('uploads/'.$page_data->testimonial_background) }})">
     <div class="container">
         <div class="row">
             <div class="col-md-12 heading">
-                <h2>Client Testimonials</h2>
-                <h3>See What My Clients Tell</h3>
+                @if($page_data->testimonial_subtitle!='')
+                <h2>{{ $page_data->testimonial_subtitle }}</h2>
+                @endif
+
+                @if($page_data->testimonial_title!='')
+                <h3>{{ $page_data->testimonial_title }}</h3>
+                @endif
             </div>
             <div class="col-md-12">
                 <div class="owl-carousel owl-theme testimonial-carousel">
@@ -448,6 +453,7 @@
         </div>
     </div>
 </div>
+@endif
 
 <div class="blog">
     <div class="container">

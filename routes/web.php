@@ -83,3 +83,7 @@ Route::get('/admin/experience/delete/{id}', [AdminExperienceController::class, '
 //Counter
 Route::get('/admin/home-counter', [AdminHomePageController::class, 'counter'])->name('admin_home_counter')->middleware('admin:admin');
 Route::post('/admin/home-counter-update', [AdminHomePageController::class, 'counter_update'])->name('admin_home_counter_update')->middleware('admin:admin');
+
+//Testimonial
+Route::get('/admin/home-testimonial', [AdminHomePageController::class, 'testimonial'])->name('admin_home_testimonial')->middleware('admin:admin');
+Route::post('/admin/home-testimonial-update', [AdminHomePageController::class, 'testimonial_update'])->name('admin_home_testimonial_update')->middleware('admin:admin');
