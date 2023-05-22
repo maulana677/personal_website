@@ -177,24 +177,14 @@
             <div class="col-md-6">
                 <h2 class="title"><i class="fas fa-award"></i> {{ $page_data->experience_title }}</h2>
                 <div class="inner">
+                    @foreach ($experiences as $item)
                     <div class="item wow fadeInUp">
-                        <h3>ArefinDev IT Solution</h3>
-                        <h4>Main City Road, Khulna</h4>
-                        <div class="time"><i class="far fa-clock"></i> 2022-Present</div>
+                        <h3>{{ $item->company }}</h3>
+                        <h4>{{ $item->designation }}</h4>
+                        <div class="time"><i class="far fa-clock"></i> {{ $item->time }}</div>
                         <div class="v-line"></div>
                     </div>
-                    <div class="item wow fadeInUp">
-                        <h3>Prime Software Limited</h3>
-                        <h4>55 Main Road, Khulna</h4>
-                        <div class="time"><i class="far fa-clock"></i> 2021-2022</div>
-                        <div class="v-line"></div>
-                    </div>
-                    <div class="item wow fadeInUp">
-                        <h3>ABC Computer Solution</h3>
-                        <h4>34 Street, Khulna</h4>
-                        <div class="time"><i class="far fa-clock"></i> 2019-2021</div>
-                        <div class="v-line"></div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
