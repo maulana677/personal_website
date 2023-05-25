@@ -62,6 +62,9 @@ return new class extends Migration
             $table->text('testimonial_title')->nullable();
             $table->text('testimonial_background');
             $table->text('testimonial_status');
+            $table->text('client_subtitle')->nullable();
+            $table->text('client_title')->nullable();
+            $table->text('client_status');
             $table->timestamps();
         });
     }

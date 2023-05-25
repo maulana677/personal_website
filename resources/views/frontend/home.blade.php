@@ -493,12 +493,19 @@
     </div>
 </div>
 
+@if($page_data->client_status == 'Show')
 <div class="home-client">
     <div class="container">
         <div class="row">
             <div class="col-md-12 heading">
-                <h2>My Clients</h2>
-                <h3>Clients with Whom I worked</h3>
+
+                @if($page_data->client_subtitle!='')
+                <h2>{{ $page_data->client_subtitle }}</h2></h2>
+                @endif
+
+                @if($page_data->client_title!='')
+                <h3>{{ $page_data->client_title }}</h3>
+                @endif
             </div>
             <div class="col-md-12">
                 <div class="owl-carousel owl-theme client-carousel">
@@ -543,6 +550,7 @@
         </div>
     </div>
 </div>
+@endif
 @endsection
 
 @section('skill_animation')

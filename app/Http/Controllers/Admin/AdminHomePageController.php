@@ -225,4 +225,24 @@ class AdminHomePageController extends Controller
 
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
+
+    //-------------------------------------------- Client --------------------------------------------//
+
+    public function client()
+    {
+        $page_data = HomePageItem::where('id',1)->first();
+        return view('admin.home_client_show', compact('page_data'));
+    }
+
+    public function client_update(Request $request)
+    {
+        $page_data = HomePageItem::where('id',1)->first();
+
+        $page_data->client_subtitle = $request->client_subtitle;
+        $page_data->client_title = $request->client_title;
+        $page_data->client_status = $request->client_status;
+        $page_data->update();
+
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
 }
