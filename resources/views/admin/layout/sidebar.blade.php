@@ -12,7 +12,7 @@
             <li class="{{ Request::is('admin/home') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_home') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Dashboard"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
 
             <li class="menu-header">Master</li>
-            <li class="nav-item dropdown {{ Request::is('admin/home-banner')||Request::is('admin/home-about')||Request::is('admin/home-skill')||Request::is('admin/home-qualification')||Request::is('admin/home-counter')||Request::is('admin/home-testimonial')||Request::is('admin/home-client') ? "active" : "" }}">
+            <li class="nav-item dropdown {{ Request::is('admin/home-banner')||Request::is('admin/home-about')||Request::is('admin/home-skill')||Request::is('admin/home-qualification')||Request::is('admin/home-counter')||Request::is('admin/home-testimonial')||Request::is('admin/home-client')||Request::is('admin/home-service') ? "active" : "" }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Home Page</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/home-banner') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_home_banner') }}"><i class="fas fa-angle-right"></i>Banner Section</a></li>
@@ -22,6 +22,7 @@
                     <li class="{{ Request::is('admin/home-counter') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_home_counter') }}"><i class="fas fa-angle-right"></i>Counter Section</a></li>
                     <li class="{{ Request::is('admin/home-testimonial') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_home_testimonial') }}"><i class="fas fa-angle-right"></i>Testimonial Section</a></li>
                     <li class="{{ Request::is('admin/home-client') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_home_client') }}"><i class="fas fa-angle-right"></i>Client Section</a></li>
+                    <li class="{{ Request::is('admin/home-service') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_home_service') }}"><i class="fas fa-angle-right"></i>Service Section</a></li>
                 </ul>
             </li>
             

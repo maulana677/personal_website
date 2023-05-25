@@ -192,7 +192,7 @@
 </div>
 @endif
 
-
+@if($page_data->service_status == 'Show')
 <div class="service">
     <div class="container">
         <div class="row">
@@ -275,6 +275,7 @@
         </div>
     </div>
 </div>
+@endif
 
 
 @if($page_data->counter_status == 'Show')

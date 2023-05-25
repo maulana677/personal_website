@@ -107,3 +107,7 @@ Route::post('/admin/client/submit', [AdminClientController::class, 'store'])->na
 Route::get('/admin/client/edit/{id}', [AdminClientController::class, 'edit'])->name('admin_client_edit')->middleware('admin:admin');
 Route::post('/admin/client/update/{id}', [AdminClientController::class, 'update'])->name('admin_client_update')->middleware('admin:admin');
 Route::get('/admin/client/delete/{id}', [AdminClientController::class, 'delete'])->name('admin_client_delete')->middleware('admin:admin');
+
+//Service
+Route::get('/admin/home-service', [AdminHomePageController::class, 'service'])->name('admin_home_service')->middleware('admin:admin');
+Route::post('/admin/home-service-update', [AdminHomePageController::class, 'service_update'])->name('admin_home_service_update')->middleware('admin:admin');

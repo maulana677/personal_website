@@ -65,6 +65,9 @@ return new class extends Migration
             $table->text('client_subtitle')->nullable();
             $table->text('client_title')->nullable();
             $table->text('client_status');
+            $table->text('service_subtitle')->nullable();
+            $table->text('service_title')->nullable();
+            $table->text('service_status');
             $table->timestamps();
         });
     }
