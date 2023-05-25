@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminEducationController;
 use App\Http\Controllers\Admin\AdminExperienceController;
 use App\Http\Controllers\Admin\AdminHomeController;
@@ -99,3 +100,10 @@ Route::get('/admin/testimonial/delete/{id}', [AdminTestimonialController::class,
 //Client
 Route::get('/admin/home-client', [AdminHomePageController::class, 'client'])->name('admin_home_client')->middleware('admin:admin');
 Route::post('/admin/home-client-update', [AdminHomePageController::class, 'client_update'])->name('admin_home_client_update')->middleware('admin:admin');
+
+Route::get('/admin/client/show', [AdminClientController::class, 'index'])->name('admin_client_show')->middleware('admin:admin');
+Route::get('/admin/client/add', [AdminClientController::class, 'add'])->name('admin_client_add')->middleware('admin:admin');
+Route::post('/admin/client/submit', [AdminClientController::class, 'store'])->name('admin_client_submit')->middleware('admin:admin');
+Route::get('/admin/client/edit/{id}', [AdminClientController::class, 'edit'])->name('admin_client_edit')->middleware('admin:admin');
+Route::post('/admin/client/update/{id}', [AdminClientController::class, 'update'])->name('admin_client_update')->middleware('admin:admin');
+Route::get('/admin/client/delete/{id}', [AdminClientController::class, 'delete'])->name('admin_client_delete')->middleware('admin:admin');

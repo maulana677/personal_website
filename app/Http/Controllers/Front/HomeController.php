@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\HomePageItem;
@@ -20,7 +21,7 @@ class HomeController extends Controller
         $education = Education::orderBy('item_order', 'asc')->get();
         $experiences = Experience::orderBy('item_order', 'asc')->get();
         $testimonials = Testimonial::orderBy('id', 'asc')->get();
-        $clients = Testimonial::orderBy('id', 'asc')->get();
+        $clients = Client::orderBy('id', 'asc')->get();
         return view('frontend.home', compact('page_data', 'left_skills', 'right_skills', 'education', 'experiences', 'testimonials'));
     }
 }
