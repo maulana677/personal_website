@@ -35,6 +35,8 @@
             <li class="{{ Request::is('admin/testimonial/*') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_testimonial_show') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Testimonial"><i class="fas fa-columns"></i> <span>Testimonial</span></a></li>
 
             <li class="{{ Request::is('admin/client/*') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_client_show') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Clients"><i class="fas fa-columns"></i> <span>Clients</span></a></li>
+
+            <li class="{{ Request::is('admin/service/*') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_service_show') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Service"><i class="fas fa-columns"></i> <span>Service</span></a></li>
             
             <li class=""><a class="nav-link" href="setting.html" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Setting"><i class="fas fa-hand-point-right"></i> <span>Setting</span></a></li>
             
