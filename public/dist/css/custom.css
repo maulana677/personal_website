@@ -465,3 +465,7 @@ hr.invoice-above-table {
     object-fit: cover;
     margin-right: 4px;
 }
+
+.page-item.active .page-link {
+    color: #fff !important;
+}

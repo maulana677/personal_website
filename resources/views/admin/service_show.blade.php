@@ -28,10 +28,10 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
-                                            <img src="{{ asset('uploads/'.$item->photo) }}" alt="" class="w_100">
+                                            <img src="{{ asset('uploads/'.$item->photo) }}" alt="" class="w_150">
                                         </td>
                                         <td>
-                                            <img src="{{ asset('uploads/'.$item->banner) }}" alt="" class="w_200">
+                                            <img src="{{ asset('uploads/'.$item->banner) }}" alt="" class="w_150">
                                         </td>
                                         <td>{{ $item->name }}</td>
                                         <td class="pt_10 pb_10">
