@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminSkillController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 //About
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/services', [ServiceController::class, 'index'])->name('services');
 
 // Admin
 Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin_home')->middleware('admin:admin');
