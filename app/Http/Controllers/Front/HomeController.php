@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\HomePageItem;
+use App\Models\Service;
 use App\Models\Skill;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ class HomeController extends Controller
         $experiences = Experience::orderBy('item_order', 'asc')->get();
         $testimonials = Testimonial::orderBy('id', 'asc')->get();
         $clients = Client::orderBy('id', 'asc')->get();
-        return view('frontend.home', compact('page_data', 'left_skills', 'right_skills', 'education', 'experiences', 'testimonials', 'clients'));
+        $services = Service::orderBy('item_order', 'asc')->get();
+        return view('frontend.home', compact('page_data', 'left_skills', 'right_skills', 'education', 'experiences', 'testimonials', 'clients', 'services'));
     }
 }
