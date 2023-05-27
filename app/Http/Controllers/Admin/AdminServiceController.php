@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AdminServiceController extends Controller
 {
@@ -23,6 +24,7 @@ class AdminServiceController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'slug' => 'required|unique:services',
             'short_description' => 'required',
             'description' => 'required',
             'icon' => 'required',
@@ -44,6 +46,7 @@ class AdminServiceController extends Controller
         $obj->banner = $final_name1;
 
         $obj->name = $request->name;
+        $obj->slug = $request->slug;
         $obj->short_description = $request->short_description;
         $obj->description = $request->description;
         $obj->icon = $request->icon;
@@ -65,6 +68,7 @@ class AdminServiceController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'slug' => ['required', 'alpha_dash', Rule::unique('services')->ignore($id)],
             'short_description' => 'required',
             'description' => 'required',
             'icon' => 'required',
@@ -102,6 +106,7 @@ class AdminServiceController extends Controller
         }
 
         $obj->name = $request->name;
+        $obj->slug = $request->slug;
         $obj->short_description = $request->short_description;
         $obj->description = $request->description;
         $obj->icon = $request->icon;

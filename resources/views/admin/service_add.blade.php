@@ -33,6 +33,10 @@
                                     <input type="text" class="form-control" name="name">
                                 </div>
                                 <div class="mb-4">
+                                    <label class="form-label">Slug *</label>
+                                    <input type="text" class="form-control" name="slug">
+                                </div>
+                                <div class="mb-4">
                                     <label class="form-label">Short Description *</label>
                                     <textarea name="short_description" class="form-control h_100" cols="30" rows="10"></textarea>
                                 </div>
