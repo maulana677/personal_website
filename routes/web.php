@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminExperienceController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminHomePageController;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminSkillController;
@@ -121,3 +122,7 @@ Route::post('/admin/service/submit', [AdminServiceController::class, 'store'])->
 Route::get('/admin/service/edit/{id}', [AdminServiceController::class, 'edit'])->name('admin_service_edit')->middleware('admin:admin');
 Route::post('/admin/service/update/{id}', [AdminServiceController::class, 'update'])->name('admin_service_update')->middleware('admin:admin');
 Route::get('/admin/service/delete/{id}', [AdminServiceController::class, 'delete'])->name('admin_service_delete')->middleware('admin:admin');
+
+// Service page
+Route::get('/admin/page/services', [AdminPageController::class, 'services'])->name('admin_page_services')->middleware('admin:admin');
+Route::post('/admin/page/services/update', [AdminPageController::class, 'services_update'])->name('admin_page_services_update')->middleware('admin:admin');

@@ -25,6 +25,13 @@
                     <li class="{{ Request::is('admin/home-service') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_home_service') }}"><i class="fas fa-angle-right"></i>Service Section</a></li>
                 </ul>
             </li>
+
+            <li class="nav-item dropdown {{ Request::is('admin/page/services') ? "active" : "" }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Other Pages</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('admin/page/services') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_page_services') }}"><i class="fas fa-angle-right"></i>Services Page</a></li>
+                </ul>
+            </li>
             
             <li class="{{ Request::is('admin/skill/*') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_skill_show') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Skills"><i class="fas fa-columns"></i> <span>Skills</span></a></li>
 
