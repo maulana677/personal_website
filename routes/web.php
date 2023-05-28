@@ -32,6 +32,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 //About
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/services', [ServiceController::class, 'index'])->name('services');
+Route::get('/service/{slug}', [ServiceController::class, 'detail'])->name('service_detail');
 
 // Admin
 Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin_home')->middleware('admin:admin');
