@@ -256,12 +256,18 @@
 </div>
 @endif
 
+@if($page_data->portfolio_status == 'Show')
 <div class="portfolio">
     <div class="container">
         <div class="row">
             <div class="col-md-12 heading">
-                <h2>My Portfolio</h2>
-                <h3>All Main Client Works</h3>
+                @if ($page_data->portfolio_subtitle !='')
+                <h2>{{ $page_data->portfolio_subtitle }}</h2>
+                @endif
+
+                @if ($page_data->portfolio_title !='')
+                <h3>{{ $page_data->portfolio_title }}</h3>
+                @endif
             </div>
             <div class="col-md-12">
                 <div class="filter">
@@ -350,6 +356,7 @@
         </div>
     </div>
 </div>
+@endif
 
 @if($page_data->testimonial_status == 'Show')
 <div class="home-testimonial" style="background-image:url({{ asset('uploads/'.$page_data->testimonial_background) }})">
