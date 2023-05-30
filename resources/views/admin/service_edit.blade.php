@@ -35,7 +35,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label">Banner *</label>
+                                    <label class="form-label">Change Banner *</label>
                                     <div>
                                         <input type="file" name="banner">
                                     </div>
