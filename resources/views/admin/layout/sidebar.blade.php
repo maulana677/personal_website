@@ -46,11 +46,11 @@
 
             <li class="{{ Request::is('admin/service/*') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_service_show') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Service"><i class="fas fa-columns"></i> <span>Service</span></a></li>
             
-            <li class="nav-item dropdown {{ Request::is('admin/portfolio-category/*') ? "active" : "" }}">
+            <li class="nav-item dropdown {{ Request::is('admin/portfolio-category/*')||Request::is('admin/portfolio/*') ? "active" : "" }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Portfolios</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/portfolio-category/*') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_portfolio_category_show') }}"><i class="fas fa-angle-right"></i>Category</a></li>
-                    <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i>Portfolio</a></li>
+                    <li class="{{ Request::is('admin/portfolio/*') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_portfolio_show') }}"><i class="fas fa-angle-right"></i>Portfolio</a></li>
                 </ul>
             </li>
         </ul>

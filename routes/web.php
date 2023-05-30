@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminHomePageController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminPortfolioCategoryController;
+use App\Http\Controllers\Admin\AdminPortfolioController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminSkillController;
@@ -139,3 +140,10 @@ Route::post('/admin/portfolio-category/submit', [AdminPortfolioCategoryControlle
 Route::get('/admin/portfolio-category/edit/{id}', [AdminPortfolioCategoryController::class, 'edit'])->name('admin_portfolio_category_edit')->middleware('admin:admin');
 Route::post('/admin/portfolio-category/update/{id}', [AdminPortfolioCategoryController::class, 'update'])->name('admin_portfolio_category_update')->middleware('admin:admin');
 Route::get('/admin/portfolio-category/delete/{id}', [AdminPortfolioCategoryController::class, 'delete'])->name('admin_portfolio_category_delete')->middleware('admin:admin');
+
+Route::get('/admin/portfolio/show', [AdminPortfolioController::class, 'index'])->name('admin_portfolio_show')->middleware('admin:admin');
+Route::get('/admin/portfolio/add', [AdminPortfolioController::class, 'add'])->name('admin_portfolio_add')->middleware('admin:admin');
+Route::post('/admin/portfolio/submit', [AdminPortfolioController::class, 'store'])->name('admin_portfolio_submit')->middleware('admin:admin');
+Route::get('/admin/portfolio/edit/{id}', [AdminPortfolioController::class, 'edit'])->name('admin_portfolio_edit')->middleware('admin:admin');
+Route::post('/admin/portfolio/update/{id}', [AdminPortfolioController::class, 'update'])->name('admin_portfolio_update')->middleware('admin:admin');
+Route::get('/admin/portfolio/delete/{id}', [AdminPortfolioController::class, 'delete'])->name('admin_portfolio_delete')->middleware('admin:admin');
