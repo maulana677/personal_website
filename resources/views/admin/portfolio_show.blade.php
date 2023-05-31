@@ -21,6 +21,9 @@
                                     <th>Banner</th>
                                     <th>Name</th>
                                     <th>Category</th>
+                                    <th>
+                                        Gallery
+                                    </th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -29,18 +32,22 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
-                                            <img src="{{ asset('uploads/'.$item->photo) }}" alt="" class="w_150">
+                                            <img src="{{ asset('uploads/'.$item->photo) }}" alt="" class="w_100">
                                         </td>
                                         <td>
-                                            <img src="{{ asset('uploads/'.$item->banner) }}" alt="" class="w_150">
+                                            <img src="{{ asset('uploads/'.$item->banner) }}" alt="" class="w_100">
                                         </td>
                                         <td>{{ $item->name }}</td>
                                         <td>
                                             {{ $item->rPortfolioCategory->category_name }}
                                         </td>
+                                        <td>
+                                            <a href="{{ route('admin_portfolio_photo_gallery', $item->id) }}" class="btn btn-success btn-sm w-100-p mb_10">Photo Gallery</a>
+                                            <a href="{{ route('admin_portfolio_photo_gallery', $item->id) }}" class="btn btn-success btn-sm w-100-p">Video Gallery</a>
+                                        </td>
                                         <td class="pt_10 pb_10">
-                                            <a href="{{ route('admin_portfolio_edit', $item->id) }}" class="btn btn-primary">Edit</a>
-                                            <a href="{{ route('admin_portfolio_delete', $item->id ) }}" class="btn btn-danger" onClick="return confirm('Are you sure?')">Delete</a>
+                                            <a href="{{ route('admin_portfolio_edit', $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="{{ route('admin_portfolio_delete', $item->id ) }}" class="btn btn-danger btn-sm" onClick="return confirm('Are you sure?')">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

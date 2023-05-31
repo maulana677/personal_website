@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Portfolio;
 use App\Models\PortfolioCategory;
+use App\Models\PortfolioPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -128,6 +129,41 @@ class AdminPortfolioController extends Controller
         $row_data = Portfolio::where('id',$id)->first();
         unlink(public_path('uploads/'.$row_data->photo));
         unlink(public_path('uploads/'.$row_data->banner));
+        $row_data->delete();
+
+        return redirect()->back()->with('success', 'Data is deleted successfully.');
+    }
+
+    public function photo_gallery($id)
+    {
+        $single_portfolio = Portfolio::where('id',$id)->first();
+        $photo_gallery_items = PortfolioPhoto::where('portfolio_id',$id)->get();
+        return view('admin.portfolio_photo_gallery_show', compact('photo_gallery_items', 'single_portfolio'));
+    }
+
+    public function photo_gallery_submit(Request $request)
+    {
+        $request->validate([
+            'photo' => 'required|image|mimes:jpg,jpeg,png,gif',
+        ]);
+
+        $obj = new PortfolioPhoto();
+
+        $ext = $request->file('photo')->extension();
+        $final_name = 'portfolio_gallery_photo_'.time().'.'.$ext;
+        $request->file('photo')->move(public_path('uploads/'),$final_name);
+        $obj->photo = $final_name;
+
+        $obj->portfolio_id = $request->portfolio_id;
+        $obj->save();
+
+        return redirect()->back()->with('success', 'Data is inserted successfully.');
+    }
+
+    public function photo_gallery_delete($id)
+    {
+        $row_data = PortfolioPhoto::where('id',$id)->first();
+        unlink(public_path('uploads/'.$row_data->photo));
         $row_data->delete();
 
         return redirect()->back()->with('success', 'Data is deleted successfully.');
