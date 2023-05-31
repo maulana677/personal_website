@@ -131,6 +131,13 @@ class AdminPortfolioController extends Controller
         unlink(public_path('uploads/'.$row_data->banner));
         $row_data->delete();
 
+        // Delete photo gallery items
+        $photo_rows = PortfolioPhoto::where('portfolio_id', $id)->get();
+        foreach($photo_rows as $item) {
+            unlink(public_path('uploads/'.$item->photo));
+            $item->delete();
+        }
+
         return redirect()->back()->with('success', 'Data is deleted successfully.');
     }
 

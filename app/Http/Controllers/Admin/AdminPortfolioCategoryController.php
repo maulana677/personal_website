@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Portfolio;
 use App\Models\PortfolioCategory;
 use Illuminate\Http\Request;
 
@@ -56,7 +57,13 @@ class AdminPortfolioCategoryController extends Controller
     public function delete($id)
     {
         $row_data = PortfolioCategory::where('id',$id)->first();
-        $row_data->delete();
+
+        $count = Portfolio::where('portfolio_category_id', $id)->count();
+        if($count==0) {
+            $row_data->delete();
+        } else {
+            return redirect()->back()->with('error', 'You can delete this portfolio category, because there is one or more portfolio under this.');
+        }
 
         return redirect()->back()->with('success', 'Data is deleted successfully.');
     }
