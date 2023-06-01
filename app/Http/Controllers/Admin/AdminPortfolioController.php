@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Portfolio;
 use App\Models\PortfolioCategory;
 use App\Models\PortfolioPhoto;
+use App\Models\PortfolioVideo;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -138,6 +139,12 @@ class AdminPortfolioController extends Controller
             $item->delete();
         }
 
+        // Delete video gallery items
+        $video_rows = PortfolioVideo::where('portfolio_id', $id)->get();
+        foreach($video_rows as $item) {
+            $item->delete();
+        }
+
         return redirect()->back()->with('success', 'Data is deleted successfully.');
     }
 
@@ -171,6 +178,38 @@ class AdminPortfolioController extends Controller
     {
         $row_data = PortfolioPhoto::where('id',$id)->first();
         unlink(public_path('uploads/'.$row_data->photo));
+        $row_data->delete();
+
+        return redirect()->back()->with('success', 'Data is deleted successfully.');
+    }
+
+    // ---------------------------------------------------------Video Gallery ------------------------------------------------
+    public function video_gallery($id)
+    {
+        $single_portfolio = Portfolio::where('id',$id)->first();
+        $video_gallery_items = PortfolioVideo::where('portfolio_id',$id)->get();
+        return view('admin.portfolio_video_gallery_show', compact('video_gallery_items', 'single_portfolio'));
+    }
+
+    public function video_gallery_submit(Request $request)
+    {
+        $request->validate([
+            'caption' => 'required',
+            'video_id' => 'required',
+        ]);
+
+        $obj = new PortfolioVideo();
+        $obj->portfolio_id = $request->portfolio_id;
+        $obj->caption = $request->caption;
+        $obj->video_id = $request->video_id;
+        $obj->save();
+
+        return redirect()->back()->with('success', 'Data is inserted successfully.');
+    }
+
+    public function video_gallery_delete($id)
+    {
+        $row_data = PortfolioVideo::where('id',$id)->first();
         $row_data->delete();
 
         return redirect()->back()->with('success', 'Data is deleted successfully.');
