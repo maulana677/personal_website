@@ -7,6 +7,8 @@ use App\Models\Client;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\HomePageItem;
+use App\Models\Portfolio;
+use App\Models\PortfolioCategory;
 use App\Models\Service;
 use App\Models\Skill;
 use App\Models\Testimonial;
@@ -27,6 +29,8 @@ class HomeController extends Controller
         $testimonials = Testimonial::orderBy('id', 'asc')->get();
         $clients = Client::orderBy('id', 'asc')->get();
         $services = Service::orderBy('item_order', 'asc')->take($service_total)->get();
-        return view('frontend.home', compact('page_data', 'left_skills', 'right_skills', 'education', 'experiences', 'testimonials', 'clients', 'services'));
+        $portfolios = Portfolio::orderBy('id', 'asc')->get();
+        $portfolios_categories = PortfolioCategory::orderBy('id', 'asc')->get();
+        return view('frontend.home', compact('page_data', 'left_skills', 'right_skills', 'education', 'experiences', 'testimonials', 'clients', 'services', 'portfolios', 'portfolios_categories'));
     }
 }
