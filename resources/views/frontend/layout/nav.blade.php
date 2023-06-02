@@ -19,7 +19,7 @@
                     <a class="nav-link {{ Request::is('services') ? "active" : "" }}" href="{{ route('services') }}">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="portfolio.html">Portfolio</a>
+                    <a class="nav-link {{ Request::is('portfolios') ? "active" : "" }}" href="{{ route('portfolios') }}">Portfolio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="blog.html">Blog</a>
