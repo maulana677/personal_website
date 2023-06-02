@@ -285,7 +285,7 @@
                     @foreach ($portfolios as $item)
                     <div class="filter-item abc{{ $item->portfolio_category_id }}">
                         <div class="inner">
-                            <div class="photo"><a href=""><img src="{{ asset('uploads/'. $item->photo) }}" alt=""></a></div>
+                            <div class="photo"><a href="{{ route('portfolio_detail', $item->slug) }}"><img src="{{ asset('uploads/'. $item->photo) }}" alt=""></a></div>
                             <div class="text">
                                 <h2>{{ $item->name }}</h2>
                             </div>
