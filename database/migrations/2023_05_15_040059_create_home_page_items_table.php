@@ -72,6 +72,8 @@ return new class extends Migration
             $table->text('portfolio_subtitle')->nullable();
             $table->text('portfolio_title')->nullable();
             $table->text('portfolio_status');
+            $table->text('seo_title')->nullable();
+            $table->text('seo_meta_description')->nullable();
             $table->timestamps();
         });
     }

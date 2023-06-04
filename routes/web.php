@@ -162,3 +162,7 @@ Route::get('/admin/portfolio/video-gallery/delete/{id}', [AdminPortfolioControll
 // Portfolio page
 Route::get('/admin/page/portfolios', [AdminPageController::class, 'portfolios'])->name('admin_page_portfolios')->middleware('admin:admin');
 Route::post('/admin/page/portfolios/update', [AdminPageController::class, 'portfolios_update'])->name('admin_page_portfolios_update')->middleware('admin:admin');
+
+// Seo
+Route::get('/admin/home-seo', [AdminHomePageController::class, 'seo'])->name('admin_home_seo')->middleware('admin:admin');
+Route::post('/admin/home-seo-update', [AdminHomePageController::class, 'seo_update'])->name('admin_home_seo_update')->middleware('admin:admin');

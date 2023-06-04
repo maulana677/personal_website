@@ -1,5 +1,13 @@
 @extends('frontend.layout.app')
 
+@section('seo_title')
+    {{ $portfolio_detail->seo_title }}
+@endsection
+
+@section('seo_meta_description')
+{{ $portfolio_detail->seo_meta_description }}
+@endsection
+
 @section('main_content')
 <div class="page-banner" style="background-image: url({{ asset('uploads/'.$portfolio_detail->banner) }})">
     <div class="container">

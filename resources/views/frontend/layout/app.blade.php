@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Personal Portfolio Website</title>
+    <title>@yield('seo_title')</title>
+    <meta name="description" value="@yield('seo_meta_description')">
 
     @include('frontend.layout.styles')
 
