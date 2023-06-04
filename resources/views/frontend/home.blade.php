@@ -8,7 +8,6 @@
 {{ $page_data->seo_meta_description }}
 @endsection
 
-
 @section('main_content')
 <div class="home-banner">
     <div class="container">
