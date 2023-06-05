@@ -19,6 +19,16 @@ return new class extends Migration
             $table->text('services_banner');
             $table->text('services_seo_title')->nullable();
             $table->text('services_seo_meta_description')->nullable();
+            $table->text('portfolio_heading');
+            $table->text('portfolio_banner');
+            $table->text('portfolio_seo_title')->nullable();
+            $table->text('portfolio_seo_meta_description')->nullable();
+            $table->text('about_heading');
+            $table->text('about_banner');
+            $table->text('about_photo')->nullable();
+            $table->text('about_description');
+            $table->text('about_seo_title')->nullable();
+            $table->text('about_seo_meta_description')->nullable();
             $table->timestamps();
         });
     }

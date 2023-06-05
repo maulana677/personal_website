@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
         <a class="navbar-brand logo" href="{{ route('home') }}">
-            My<span>Website</span>
+            My<span>Portfolio</span>
             <!-- <img src="images/logo.png" alt=""> -->
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

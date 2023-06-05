@@ -166,3 +166,9 @@ Route::post('/admin/page/portfolios/update', [AdminPageController::class, 'portf
 // Seo
 Route::get('/admin/home-seo', [AdminHomePageController::class, 'seo'])->name('admin_home_seo')->middleware('admin:admin');
 Route::post('/admin/home-seo-update', [AdminHomePageController::class, 'seo_update'])->name('admin_home_seo_update')->middleware('admin:admin');
+
+// Aabout
+// Portfolio page
+Route::get('/admin/page/about', [AdminPageController::class, 'about'])->name('admin_page_about')->middleware('admin:admin');
+Route::post('/admin/page/about/update', [AdminPageController::class, 'about_update'])->name('admin_page_about_update')->middleware('admin:admin');
+Route::get('/admin/page/about/photo/delete', [AdminPageController::class, 'about_photo_delete'])->name('admin_page_about_photo_delete')->middleware('admin:admin');

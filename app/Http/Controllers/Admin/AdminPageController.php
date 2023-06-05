@@ -83,4 +83,71 @@ class AdminPageController extends Controller
 
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
+
+    //--------------------------------------------------- About --------------------------------------------//
+
+    public function about()
+    {
+        $page_data = PageItem::where('id',1)->first();
+        return view('admin.page_about', compact('page_data'));
+    }
+
+    public function about_update(Request $request)
+    {
+        $page_data = PageItem::where('id',1)->first();
+
+        $request->validate([
+            'about_heading' => 'required',
+            'about_description' => 'required'
+        ]); 
+
+        if ($request->hasFile('about_photo')) {
+            $request->validate([
+                'about_photo' => 'image|mimes:jpg,jpeg,png,gif'
+            ]);
+
+            if ($page_data->about_photo) {
+                unlink(public_path('uploads/'.$page_data->about_photo));
+            }
+
+            $ext = $request->file('about_photo')->extension();
+            $final_name = 'photo_about_'.time().'.'.$ext;
+
+            $request->file('about_photo')->move(public_path('uploads/'),$final_name);
+
+            $page_data->about_photo = $final_name;
+        }
+
+        if ($request->hasFile('about_banner')) {
+            $request->validate([
+                'about_banner' => 'image|mimes:jpg,jpeg,png,gif'
+            ]);
+            unlink(public_path('uploads/'.$page_data->about_banner));
+
+            $ext = $request->file('about_banner')->extension();
+            $final_name = 'banner_about_'.time().'.'.$ext;
+
+            $request->file('about_banner')->move(public_path('uploads/'),$final_name);
+
+            $page_data->about_banner = $final_name;
+        }
+
+        $page_data->about_heading = $request->about_heading;
+        $page_data->about_description = $request->about_description;
+        $page_data->about_seo_title = $request->about_seo_title;
+        $page_data->about_seo_meta_description = $request->about_seo_meta_description;
+        $page_data->update();
+
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
+
+    public function about_photo_delete()
+    {
+        $row_data = PageItem::where('id', 1)->first();
+        unlink(public_path('uploads/'.$row_data->about_photo));
+        $row_data->about_photo = '';
+        $row_data->update();
+
+        return redirect()->back()->with('success', 'Photo is deleted successfully.');
+    }
 }
