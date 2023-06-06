@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Description *</label>
-                                    <textarea name="description" class="form-control snote" cols="30" rows="10">{{ old('description') }}</textarea>
+                                    <textarea name="description" class="form-control editor" cols="30" rows="10">{{ old('description') }}</textarea>
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Client Name</label>

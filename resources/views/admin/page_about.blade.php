@@ -18,7 +18,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Description*</label>
-                                    <textarea name="about_description" class="form-control snote" cols="30" rows="10">{{ $page_data->about_description }}</textarea>
+                                    <textarea name="about_description" class="form-control editor" cols="30" rows="10">{{ $page_data->about_description }}</textarea>
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Existing Photo</label>
