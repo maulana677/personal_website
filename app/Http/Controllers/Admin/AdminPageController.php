@@ -150,4 +150,50 @@ class AdminPageController extends Controller
 
         return redirect()->back()->with('success', 'Photo is deleted successfully.');
     }
+
+    //--------------------------------------------------- Contact --------------------------------------------//
+
+    public function contact()
+    {
+        $page_data = PageItem::where('id',1)->first();
+        return view('admin.page_contact', compact('page_data'));
+    }
+
+    public function contact_update(Request $request)
+    {
+        $page_data = PageItem::where('id',1)->first();
+
+        $request->validate([
+            'contact_heading' => 'required',
+            'contact_address' => 'required',
+            'contact_email' => 'required',
+            'contact_phone' => 'required',
+            'contact_map_iframe' => 'required'
+        ]); 
+
+        if ($request->hasFile('contact_banner')) {
+            $request->validate([
+                'contact_banner' => 'image|mimes:jpg,jpeg,png,gif'
+            ]);
+            unlink(public_path('uploads/'.$page_data->contact_banner));
+
+            $ext = $request->file('contact_banner')->extension();
+            $final_name = 'banner_contact_'.time().'.'.$ext;
+
+            $request->file('contact_banner')->move(public_path('uploads/'),$final_name);
+
+            $page_data->contact_banner = $final_name;
+        }
+
+        $page_data->contact_heading = $request->contact_heading;
+        $page_data->contact_address = $request->contact_address;
+        $page_data->contact_email = $request->contact_email;
+        $page_data->contact_phone = $request->contact_phone;
+        $page_data->contact_map_iframe = $request->contact_map_iframe;
+        $page_data->contact_seo_title = $request->contact_seo_title;
+        $page_data->contact_seo_meta_description = $request->contact_seo_meta_description;
+        $page_data->update();
+
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
 }

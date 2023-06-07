@@ -29,6 +29,14 @@ return new class extends Migration
             $table->text('about_description');
             $table->text('about_seo_title')->nullable();
             $table->text('about_seo_meta_description')->nullable();
+            $table->text('contact_heading');
+            $table->text('contact_banner');
+            $table->text('contact_address');
+            $table->text('contact_email');
+            $table->text('contact_phone');
+            $table->text('contact_map_iframe');
+            $table->text('contact_seo_title')->nullable();
+            $table->text('contact_seo_meta_description')->nullable();
             $table->timestamps();
         });
     }

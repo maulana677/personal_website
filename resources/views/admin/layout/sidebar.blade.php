@@ -28,12 +28,13 @@
                 </ul>
             </li>
 
-            <li class="nav-item dropdown {{ Request::is('admin/page/services')||Request::is('admin/page/portfolios')||Request::is('admin/page/about') ? "active" : "" }}">
+            <li class="nav-item dropdown {{ Request::is('admin/page/services')||Request::is('admin/page/portfolios')||Request::is('admin/page/about')||Request::is('admin/page/contact') ? "active" : "" }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Other Pages</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/page/services') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_page_services') }}"><i class="fas fa-angle-right"></i>Services Page</a></li>
                     <li class="{{ Request::is('admin/page/portfolios') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_page_portfolios') }}"><i class="fas fa-angle-right"></i>Portfolios Page</a></li>
                     <li class="{{ Request::is('admin/page/about') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_page_about') }}"><i class="fas fa-angle-right"></i>About Page</a></li>
+                    <li class="{{ Request::is('admin/page/contact') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_page_contact') }}"><i class="fas fa-angle-right"></i>Contact Page</a></li>
                 </ul>
             </li>
             
