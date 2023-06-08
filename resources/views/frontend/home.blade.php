@@ -344,12 +344,18 @@
 </div>
 @endif
 
+@if($page_data->blog_status == 'Show')
 <div class="blog">
     <div class="container">
         <div class="row">
             <div class="col-md-12 heading">
-                <h2>Latest Blog</h2>
-                <h3>Updated Posts Are Listed</h3>
+                @if($page_data->blog_subtitle !='')
+                    <h2>{{ $page_data->blog_subtitle }}</h2>
+                @endif
+
+                @if($page_data->blog_title !='')
+                <h3>{{ $page_data->blog_title }}</h3>
+                @endif
             </div>
             <div class="col-md-4 wow fadeInUp">
                 <div class="item">
@@ -402,6 +408,7 @@
         </div>
     </div>
 </div>
+@endif
 
 @if($page_data->client_status == 'Show')
 <div class="home-client">

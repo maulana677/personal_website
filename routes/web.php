@@ -178,3 +178,7 @@ Route::get('/admin/page/about/photo/delete', [AdminPageController::class, 'about
 // Contact
 Route::get('/admin/page/contact', [AdminPageController::class, 'contact'])->name('admin_page_contact')->middleware('admin:admin');
 Route::post('/admin/page/contact/update', [AdminPageController::class, 'contact_update'])->name('admin_page_contact_update')->middleware('admin:admin');
+
+// Blog
+Route::get('/admin/home-blog', [AdminHomePageController::class, 'blog'])->name('admin_home_blog')->middleware('admin:admin');
+Route::post('/admin/home-blog-update', [AdminHomePageController::class, 'blog_update'])->name('admin_home_blog_update')->middleware('admin:admin');

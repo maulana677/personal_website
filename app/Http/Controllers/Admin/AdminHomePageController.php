@@ -291,7 +291,7 @@ class AdminHomePageController extends Controller
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
 
-    //-------------------------------------------- Portfolio --------------------------------------------//
+    //-------------------------------------------- Seo --------------------------------------------//
 
     public function seo()
     {
@@ -305,6 +305,26 @@ class AdminHomePageController extends Controller
 
         $page_data->seo_title = $request->seo_title;
         $page_data->seo_meta_description = $request->seo_meta_description;
+        $page_data->update();
+
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
+
+    //-------------------------------------------- Portfolio --------------------------------------------//
+
+    public function blog()
+    {
+        $page_data = HomePageItem::where('id',1)->first();
+        return view('admin.home_blog_show', compact('page_data'));
+    }
+
+    public function blog_update(Request $request)
+    {
+        $page_data = HomePageItem::where('id',1)->first();
+
+        $page_data->blog_subtitle = $request->blog_subtitle;
+        $page_data->blog_title = $request->blog_title;
+        $page_data->blog_status = $request->blog_status;
         $page_data->update();
 
         return redirect()->back()->with('success', 'Data is updated successfully.');
