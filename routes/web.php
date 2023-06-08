@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminSkillController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PortfolioController;
 use App\Http\Controllers\Front\ServiceController;
@@ -38,6 +39,8 @@ Route::get('/services', [ServiceController::class, 'index'])->name('services');
 Route::get('/service/{slug}', [ServiceController::class, 'detail'])->name('service_detail');
 Route::get('/portfolios', [PortfolioController::class, 'index'])->name('portfolios');
 Route::get('/portfolio/{slug}', [PortfolioController::class, 'detail'])->name('portfolio_detail');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact/send-email', [ContactController::class, 'send_email'])->name('contact_send_email');
 
 // Admin
 Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin_home')->middleware('admin:admin');
