@@ -58,6 +58,13 @@
                     <li class="{{ Request::is('admin/portfolio/*') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_portfolio_show') }}"><i class="fas fa-angle-right"></i>Portfolio</a></li>
                 </ul>
             </li>
+
+            <li class="nav-item dropdown {{ Request::is('admin/post-category/*') ? "active" : "" }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Blog</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('admin/post-category/*') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_post_category_show') }}"><i class="fas fa-angle-right"></i>Category</a></li>
+                </ul>
+            </li>
         </ul>
     </aside>
 </div>
