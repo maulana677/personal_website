@@ -59,10 +59,11 @@
                 </ul>
             </li>
 
-            <li class="nav-item dropdown {{ Request::is('admin/post-category/*') ? "active" : "" }}">
+            <li class="nav-item dropdown {{ Request::is('admin/post-category/*')||Request::is('admin/post/*') ? "active" : "" }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Blog</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/post-category/*') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_post_category_show') }}"><i class="fas fa-angle-right"></i>Category</a></li>
+                    <li class="{{ Request::is('admin/post/*') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_post_show') }}"><i class="fas fa-angle-right"></i>Post</a></li>
                 </ul>
             </li>
         </ul>

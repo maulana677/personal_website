@@ -3,64 +3,58 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Portfolio;
-use App\Models\PortfolioCategory;
-use App\Models\PortfolioPhoto;
-use App\Models\PortfolioVideo;
+use App\Models\Post;
+use App\Models\PostCategory;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
-class AdminPortfolioController extends Controller
+class AdminPostController extends Controller
 {
     public function index()
     {
-        $all_data = Portfolio::with('rPortfolioCategory')->orderBy('id','asc')->get();
-        return view('admin.portfolio_show', compact('all_data'));
+        $all_data = Post::with('rPostCategory')->orderBy('id','asc')->get();
+        return view('admin.post_show', compact('all_data'));
     }
 
     public function add()
     {
-        $portfolio_categories = PortfolioCategory::get();
-        return view('admin.portfolio_add', compact('portfolio_categories'));
+        $post_categories = PostCategory::get();
+        return view('admin.post_add', compact('post_categories'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:portfolios',
+            'title' => 'required',
+            'slug' => 'required|unique:posts',
+            'short_description' => 'required',
             'description' => 'required',
             'photo' => 'required|image|mimes:jpg,jpeg,png,gif',
             'banner' => 'required|image|mimes:jpg,jpeg,png,gif'
         ]);
 
-        $obj = new Portfolio();
+        $obj = new Post();
 
         $ext = $request->file('photo')->extension();
-        $final_name = 'portfolio_photo_'.time().'.'.$ext;
+        $final_name = 'post_photo_'.time().'.'.$ext;
         $request->file('photo')->move(public_path('uploads/'),$final_name);
         $obj->photo = $final_name;
 
         $ext1 = $request->file('banner')->extension();
-        $final_name1 = 'portfolio_banner_'.time().'.'.$ext1;
+        $final_name1 = 'post_banner_'.time().'.'.$ext1;
         $request->file('banner')->move(public_path('uploads/'),$final_name1);
         $obj->banner = $final_name1;
 
-        $obj->portfolio_category_id = $request->portfolio_category_id;
-        $obj->name = $request->name;
+        $obj->post_category_id = $request->post_category_id;
+        $obj->title = $request->title;
         $obj->slug = $request->slug;
+        $obj->short_description = $request->short_description;
         $obj->description = $request->description;
-        $obj->project_client = $request->project_client;
-        $obj->project_company = $request->project_company;
-        $obj->project_start_date = $request->project_start_date;
-        $obj->project_end_date = $request->project_end_date;
-        $obj->project_cost = $request->project_cost;
-        $obj->project_website = $request->project_website;
+        $obj->show_comment = $request->show_comment;
         $obj->seo_title = $request->seo_title;
         $obj->seo_meta_description = $request->seo_meta_description;
         $obj->save();
 
-        return redirect()->route('admin_portfolio_show')->with('success', 'Data is inserted successfully.');
+        return redirect()->route('admin_post_show')->with('success', 'Data is inserted successfully.');
     }
 
     public function edit($id)
@@ -144,73 +138,6 @@ class AdminPortfolioController extends Controller
         foreach($video_rows as $item) {
             $item->delete();
         }
-
-        return redirect()->back()->with('success', 'Data is deleted successfully.');
-    }
-
-    public function photo_gallery($id)
-    {
-        $single_portfolio = Portfolio::where('id',$id)->first();
-        $photo_gallery_items = PortfolioPhoto::where('portfolio_id',$id)->get();
-        return view('admin.portfolio_photo_gallery_show', compact('photo_gallery_items', 'single_portfolio'));
-    }
-
-    public function photo_gallery_submit(Request $request)
-    {
-        $request->validate([
-            'photo' => 'required|image|mimes:jpg,jpeg,png,gif',
-        ]);
-
-        $obj = new PortfolioPhoto();
-
-        $ext = $request->file('photo')->extension();
-        $final_name = 'portfolio_gallery_photo_'.time().'.'.$ext;
-        $request->file('photo')->move(public_path('uploads/'),$final_name);
-        $obj->photo = $final_name;
-
-        $obj->portfolio_id = $request->portfolio_id;
-        $obj->save();
-
-        return redirect()->back()->with('success', 'Data is inserted successfully.');
-    }
-
-    public function photo_gallery_delete($id)
-    {
-        $row_data = PortfolioPhoto::where('id',$id)->first();
-        unlink(public_path('uploads/'.$row_data->photo));
-        $row_data->delete();
-
-        return redirect()->back()->with('success', 'Data is deleted successfully.');
-    }
-
-    // ---------------------------------------------------------Video Gallery ------------------------------------------------
-    public function video_gallery($id)
-    {
-        $single_portfolio = Portfolio::where('id',$id)->first();
-        $video_gallery_items = PortfolioVideo::where('portfolio_id',$id)->get();
-        return view('admin.portfolio_video_gallery_show', compact('video_gallery_items', 'single_portfolio'));
-    }
-
-    public function video_gallery_submit(Request $request)
-    {
-        $request->validate([
-            'caption' => 'required',
-            'video_id' => 'required',
-        ]);
-
-        $obj = new PortfolioVideo();
-        $obj->portfolio_id = $request->portfolio_id;
-        $obj->caption = $request->caption;
-        $obj->video_id = $request->video_id;
-        $obj->save();
-
-        return redirect()->back()->with('success', 'Data is inserted successfully.');
-    }
-
-    public function video_gallery_delete($id)
-    {
-        $row_data = PortfolioVideo::where('id',$id)->first();
-        $row_data->delete();
 
         return redirect()->back()->with('success', 'Data is deleted successfully.');
     }
