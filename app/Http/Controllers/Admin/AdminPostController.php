@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AdminPostController extends Controller
 {
@@ -59,20 +60,21 @@ class AdminPostController extends Controller
 
     public function edit($id)
     {
-        $portfolio_categories = PortfolioCategory::get();
-        $row_data = Portfolio::where('id',$id)->first();
-        return view('admin.portfolio_edit', compact('row_data', 'portfolio_categories'));
+        $post_categories = PostCategory::get();
+        $row_data = Post::where('id',$id)->first();
+        return view('admin.post_edit', compact('row_data', 'post_categories'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => ['required', 'alpha_dash', Rule::unique('portfolios')->ignore($id)],
+            'title' => 'required',
+            'slug' => ['required', 'alpha_dash', Rule::unique('posts')->ignore($id)],
+            'short_description' => 'required',
             'description' => 'required'
         ]);
 
-        $obj = Portfolio::where('id', $id)->first();
+        $obj = Post::where('id', $id)->first();
 
         if ($request->hasFile('photo')) {
             $request->validate([
@@ -81,7 +83,7 @@ class AdminPostController extends Controller
             unlink(public_path('uploads/'.$obj->photo));
 
             $ext = $request->file('photo')->extension();
-            $final_name = 'portfolio_photo_'.time().'.'.$ext;
+            $final_name = 'post_photo_'.time().'.'.$ext;
 
             $request->file('photo')->move(public_path('uploads/'),$final_name);
 
@@ -95,49 +97,32 @@ class AdminPostController extends Controller
             unlink(public_path('uploads/'.$obj->banner));
 
             $ext = $request->file('banner')->extension();
-            $final_name = 'portfolio_banner_'.time().'.'.$ext;
+            $final_name = 'post_banner_'.time().'.'.$ext;
 
             $request->file('banner')->move(public_path('uploads/'),$final_name);
 
             $obj->banner = $final_name;
         }
 
-        $obj->portfolio_category_id = $request->portfolio_category_id;
-        $obj->name = $request->name;
+        $obj->post_category_id = $request->post_category_id;
+        $obj->title = $request->title;
         $obj->slug = $request->slug;
+        $obj->short_description = $request->short_description;
         $obj->description = $request->description;
-        $obj->project_client = $request->project_client;
-        $obj->project_company = $request->project_company;
-        $obj->project_start_date = $request->project_start_date;
-        $obj->project_end_date = $request->project_end_date;
-        $obj->project_cost = $request->project_cost;
-        $obj->project_website = $request->project_website;
+        $obj->show_comment = $request->show_comment;
         $obj->seo_title = $request->seo_title;
         $obj->seo_meta_description = $request->seo_meta_description;
         $obj->update();
 
-        return redirect()->route('admin_portfolio_show')->with('success', 'Data is updated successfully.');
+        return redirect()->route('admin_post_show')->with('success', 'Data is updated successfully.');
     }
 
     public function delete($id)
     {
-        $row_data = Portfolio::where('id',$id)->first();
+        $row_data = Post::where('id',$id)->first();
         unlink(public_path('uploads/'.$row_data->photo));
         unlink(public_path('uploads/'.$row_data->banner));
         $row_data->delete();
-
-        // Delete photo gallery items
-        $photo_rows = PortfolioPhoto::where('portfolio_id', $id)->get();
-        foreach($photo_rows as $item) {
-            unlink(public_path('uploads/'.$item->photo));
-            $item->delete();
-        }
-
-        // Delete video gallery items
-        $video_rows = PortfolioVideo::where('portfolio_id', $id)->get();
-        foreach($video_rows as $item) {
-            $item->delete();
-        }
 
         return redirect()->back()->with('success', 'Data is deleted successfully.');
     }
