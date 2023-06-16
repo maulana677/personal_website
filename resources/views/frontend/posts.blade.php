@@ -36,7 +36,7 @@
                             {!! nl2br($item->short_description) !!}
                         </p>
                         <div class="button">
-                            <a href="" class="btn btn-primary">Read More</a>
+                            <a href="{{ route('post',$item->slug) }}" class="btn btn-primary">Read More</a>
                         </div>
                     </div>
                 </div>

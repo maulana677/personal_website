@@ -45,6 +45,7 @@ Route::get('/portfolio/{slug}', [PortfolioController::class, 'detail'])->name('p
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact/send-email', [ContactController::class, 'send_email'])->name('contact_send_email');
 Route::get('/blog', [PostController::class, 'index'])->name('blog');
+Route::get('/post/{slug}', [PostController::class, 'detail'])->name('post');
 
 // Admin
 Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin_home')->middleware('admin:admin');
