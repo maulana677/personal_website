@@ -43,6 +43,8 @@
                     <div class="sharethis-inline-share-buttons"></div>
                 </div>
 
+
+                @if($post_detail->show_comment == 'Yes')
                 <div class="comment">
 
                     <h2>6 Comments</h2>
@@ -162,6 +164,7 @@
 
                     
                 </div>
+                @endif
 
             </div>
             <div class="col-md-4">
