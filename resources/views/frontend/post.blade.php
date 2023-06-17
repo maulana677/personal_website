@@ -32,7 +32,7 @@
                     <div class="dash"> - </div>
                     <div class="date"><span>On:</span> {{ $post_detail->created_at->format('D, d M Y') }}</div>
                     <div class="dash"> - </div>
-                    <div class="category"><span>Category:</span> <a href="">{{ $post_detail->rPostCategory->category_name }}</a></div>
+                    <div class="category"><span>Category:</span> <a href="{{ route('category',$post_detail->rPostCategory->category_slug) }}">{{ $post_detail->rPostCategory->category_name }}</a></div>
                 </div>
                 <div class="text">
                     {!! nl2br($post_detail->description) !!}
@@ -194,7 +194,7 @@
                         <h2>Categories</h2>
                         <ul>
                             @foreach ($post_category as $item)
-                                <li><a href="#">{{ $item->category_name }}</a></li>    
+                                <li><a href="{{ route('category',$item->category_slug) }}">{{ $item->category_name }}</a></li>    
                             @endforeach
                         </ul>
                     </div>

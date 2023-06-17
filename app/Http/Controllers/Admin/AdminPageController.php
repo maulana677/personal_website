@@ -234,4 +234,84 @@ class AdminPageController extends Controller
 
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
+
+    //--------------------------------------------------- Category --------------------------------------------//
+
+    public function category()
+    {
+        $page_data = PageItem::where('id',1)->first();
+        return view('admin.page_category', compact('page_data'));
+    }
+
+    public function category_update(Request $request)
+    {
+        $page_data = PageItem::where('id',1)->first();
+
+        $request->validate([
+            'category_banner' => 'image|mimes:jpg,jpeg,png,gif'
+        ]);
+        unlink(public_path('uploads/'.$page_data->category_banner));
+
+        $ext = $request->file('category_banner')->extension();
+        $final_name = 'banner_category_'.time().'.'.$ext;
+
+        $request->file('category_banner')->move(public_path('uploads/'),$final_name);
+
+        $page_data->category_banner = $final_name;
+        $page_data->update();
+
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
+
+    public function archive()
+    {
+        $page_data = PageItem::where('id',1)->first();
+        return view('admin.page_archive', compact('page_data'));
+    }
+
+    public function archive_update(Request $request)
+    {
+        $page_data = PageItem::where('id',1)->first();
+
+        $request->validate([
+            'archive_banner' => 'image|mimes:jpg,jpeg,png,gif'
+        ]);
+        unlink(public_path('uploads/'.$page_data->archive_banner));
+
+        $ext = $request->file('archive_banner')->extension();
+        $final_name = 'banner_archive_'.time().'.'.$ext;
+
+        $request->file('archive_banner')->move(public_path('uploads/'),$final_name);
+
+        $page_data->archive_banner = $final_name;
+        $page_data->update();
+
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
+
+    public function search()
+    {
+        $page_data = PageItem::where('id',1)->first();
+        return view('admin.page_search', compact('page_data'));
+    }
+
+    public function search_update(Request $request)
+    {
+        $page_data = PageItem::where('id',1)->first();
+
+        $request->validate([
+            'search_banner' => 'image|mimes:jpg,jpeg,png,gif'
+        ]);
+        unlink(public_path('uploads/'.$page_data->search_banner));
+
+        $ext = $request->file('search_banner')->extension();
+        $final_name = 'banner_search_'.time().'.'.$ext;
+
+        $request->file('search_banner')->move(public_path('uploads/'),$final_name);
+
+        $page_data->search_banner = $final_name;
+        $page_data->update();
+
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
 }

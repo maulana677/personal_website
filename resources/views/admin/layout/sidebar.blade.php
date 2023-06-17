@@ -29,7 +29,7 @@
                 </ul>
             </li>
 
-            <li class="nav-item dropdown {{ Request::is('admin/page/services')||Request::is('admin/page/portfolios')||Request::is('admin/page/about')||Request::is('admin/page/contact')||Request::is('admin/page/blog') ? "active" : "" }}">
+            <li class="nav-item dropdown {{ Request::is('admin/page/services')||Request::is('admin/page/portfolios')||Request::is('admin/page/about')||Request::is('admin/page/contact')||Request::is('admin/page/blog')||Request::is('admin/page/category')||Request::is('admin/page/archive')||Request::is('admin/page/search') ? "active" : "" }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Other Pages</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/page/services') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_page_services') }}"><i class="fas fa-angle-right"></i>Services Page</a></li>
@@ -37,6 +37,9 @@
                     <li class="{{ Request::is('admin/page/about') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_page_about') }}"><i class="fas fa-angle-right"></i>About Page</a></li>
                     <li class="{{ Request::is('admin/page/contact') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_page_contact') }}"><i class="fas fa-angle-right"></i>Contact Page</a></li>
                     <li class="{{ Request::is('admin/page/blog') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_page_blog') }}"><i class="fas fa-angle-right"></i>Blog Page</a></li>
+                    <li class="{{ Request::is('admin/page/category') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_page_category') }}"><i class="fas fa-angle-right"></i>Category Page</a></li>
+                    <li class="{{ Request::is('admin/page/archive') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_page_archive') }}"><i class="fas fa-angle-right"></i>Archive Page</a></li>
+                    <li class="{{ Request::is('admin/page/search') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_page_search') }}"><i class="fas fa-angle-right"></i>Search Page</a></li>
                 </ul>
             </li>
             

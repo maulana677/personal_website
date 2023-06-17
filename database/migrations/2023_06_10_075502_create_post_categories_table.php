@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->text('category_name');
             $table->text('category_slug');
+            $table->text('category_seo_title')->nullable();
+            $table->text('category_seo_meta_description')->nullable();
             $table->timestamps();
         });
     }

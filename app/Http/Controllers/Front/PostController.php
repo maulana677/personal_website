@@ -24,4 +24,9 @@ class PostController extends Controller
         $post_detail = Post::with('rPostCategory')->where('slug',$slug)->first();
         return view('frontend.post', compact('post_detail', 'posts', 'post_category'));
     }
+
+    public function category($slug)
+    {
+        
+    }
 }

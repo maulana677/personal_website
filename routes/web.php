@@ -46,6 +46,7 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact/send-email', [ContactController::class, 'send_email'])->name('contact_send_email');
 Route::get('/blog', [PostController::class, 'index'])->name('blog');
 Route::get('/post/{slug}', [PostController::class, 'detail'])->name('post');
+Route::get('/category/{slug}', [PostController::class, 'category'])->name('category');
 
 // Admin
 Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin_home')->middleware('admin:admin');
@@ -205,3 +206,15 @@ Route::get('/admin/post/delete/{id}', [AdminPostController::class, 'delete'])->n
 // Blog
 Route::get('/admin/page/blog', [AdminPageController::class, 'blog'])->name('admin_page_blog')->middleware('admin:admin');
 Route::post('/admin/page/blog/update', [AdminPageController::class, 'blog_update'])->name('admin_page_blog_update')->middleware('admin:admin');
+
+// Category
+Route::get('/admin/page/category', [AdminPageController::class, 'category'])->name('admin_page_category')->middleware('admin:admin');
+Route::post('/admin/page/category/update', [AdminPageController::class, 'category_update'])->name('admin_page_category_update')->middleware('admin:admin');
+
+// Archive
+Route::get('/admin/page/archive', [AdminPageController::class, 'archive'])->name('admin_page_archive')->middleware('admin:admin');
+Route::post('/admin/page/archive/update', [AdminPageController::class, 'archive_update'])->name('admin_page_archive_update')->middleware('admin:admin');
+
+// Search
+Route::get('/admin/page/search', [AdminPageController::class, 'search'])->name('admin_page_search')->middleware('admin:admin');
+Route::post('/admin/page/search/update', [AdminPageController::class, 'search_update'])->name('admin_page_search_update')->middleware('admin:admin');
