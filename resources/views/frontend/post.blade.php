@@ -193,7 +193,7 @@
                     <div class="widget">
                         <h2>Categories</h2>
                         <ul>
-                            @foreach ($post_category as $item)
+                            @foreach ($post_categories as $item)
                                 <li><a href="{{ route('category',$item->category_slug) }}">{{ $item->category_name }}</a></li>    
                             @endforeach
                         </ul>

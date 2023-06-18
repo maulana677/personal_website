@@ -20,13 +20,16 @@ class PostController extends Controller
     public function detail($slug)
     {
         $posts = Post::orderBy('id', 'desc')->take(5)->get();
-        $post_category = PostCategory::orderBy('id', 'asc')->get();
+        $post_categories = PostCategory::orderBy('category_name', 'asc')->get();
         $post_detail = Post::with('rPostCategory')->where('slug',$slug)->first();
-        return view('frontend.post', compact('post_detail', 'posts', 'post_category'));
+        return view('frontend.post', compact('post_detail', 'posts', 'post_categories'));
     }
 
     public function category($slug)
     {
-        
+        $category_detail = PostCategory::where('category_slug',$slug)->first();
+        $posts = Post::orderBy('id', 'desc')->where('post_category_id', $category_detail->id)->paginate(6);
+        $page_data = PageItem::where('id', 1)->first();
+        return view('frontend.category', compact('posts','page_data', 'category_detail'));
     }
 }
