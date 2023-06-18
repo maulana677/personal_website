@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Archive;
 use App\Models\PageItem;
 use App\Models\Post;
 use App\Models\PostCategory;
@@ -22,7 +23,8 @@ class PostController extends Controller
         $posts = Post::orderBy('id', 'desc')->take(5)->get();
         $post_categories = PostCategory::orderBy('category_name', 'asc')->get();
         $post_detail = Post::with('rPostCategory')->where('slug',$slug)->first();
-        return view('frontend.post', compact('post_detail', 'posts', 'post_categories'));
+        $archives = Archive::orderBy('id', 'desc')->get();
+        return view('frontend.post', compact('post_detail', 'posts', 'post_categories', 'archives'));
     }
 
     public function category($slug)

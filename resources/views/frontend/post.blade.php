@@ -201,12 +201,23 @@
                     <div class="widget">
                         <h2>Archives</h2>
                         <ul>
-                            <li><a href="archive.html">September 2022 (7)</a></li>
-                            <li><a href="archive.html">August 2022 (14)</a></li>
-                            <li><a href="archive.html">July 2022 (9)</a></li>
-                            <li><a href="archive.html">June 2022 (4)</a></li>
-                            <li><a href="archive.html">May 2022 (18)</a></li>
-                            <li><a href="archive.html">April 2022 (11)</a></li>
+                            @foreach($archives as $item)
+                                @php
+                                if($item->month == '01') {$month='January';}
+                                elseif($item->month == '02') {$month='February';}
+                                elseif($item->month == '03') {$month='Maret';}
+                                elseif($item->month == '04') {$month='April';}
+                                elseif($item->month == '05') {$month='Mei';}
+                                elseif($item->month == '06') {$month='Juni';}
+                                elseif($item->month == '07') {$month='Juli';}
+                                elseif($item->month == '08') {$month='Agustus';}
+                                elseif($item->month == '09') {$month='September';}
+                                elseif($item->month == '10') {$month='Oktober';}
+                                elseif($item->month == '11') {$month='November';}
+                                elseif($item->month == '12') {$month='Desember';}
+                                @endphp
+                                <li><a href="">{{ $month }} {{ $item->year }} ({{ $item->total_post }})</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
