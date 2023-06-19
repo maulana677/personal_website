@@ -263,6 +263,8 @@ class AdminPageController extends Controller
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
 
+    //--------------------------------------------------- Archive --------------------------------------------//
+
     public function archive()
     {
         $page_data = PageItem::where('id',1)->first();
@@ -273,21 +275,28 @@ class AdminPageController extends Controller
     {
         $page_data = PageItem::where('id',1)->first();
 
-        $request->validate([
-            'archive_banner' => 'image|mimes:jpg,jpeg,png,gif'
-        ]);
-        unlink(public_path('uploads/'.$page_data->archive_banner));
+        if ($request->hasFile('archive_banner')) {
+            $request->validate([
+                'archive_banner' => 'image|mimes:jpg,jpeg,png,gif'
+            ]);
+            unlink(public_path('uploads/'.$page_data->archive_banner));
 
-        $ext = $request->file('archive_banner')->extension();
-        $final_name = 'banner_archive_'.time().'.'.$ext;
+            $ext = $request->file('archive_banner')->extension();
+            $final_name = 'banner_archive_'.time().'.'.$ext;
 
-        $request->file('archive_banner')->move(public_path('uploads/'),$final_name);
+            $request->file('archive_banner')->move(public_path('uploads/'),$final_name);
 
-        $page_data->archive_banner = $final_name;
+            $page_data->archive_banner = $final_name;
+        }
+
+        $page_data->archive_seo_title = $request->archive_seo_title;
+        $page_data->archive_seo_meta_description = $request->archive_seo_meta_description;
         $page_data->update();
 
         return redirect()->back()->with('success', 'Data is updated successfully.');
     }
+
+    //--------------------------------------------------- Search --------------------------------------------//
 
     public function search()
     {
@@ -299,17 +308,22 @@ class AdminPageController extends Controller
     {
         $page_data = PageItem::where('id',1)->first();
 
-        $request->validate([
-            'search_banner' => 'image|mimes:jpg,jpeg,png,gif'
-        ]);
-        unlink(public_path('uploads/'.$page_data->search_banner));
+        if ($request->hasFile('search_banner')) {
+            $request->validate([
+                'search_banner' => 'image|mimes:jpg,jpeg,png,gif'
+            ]);
+            unlink(public_path('uploads/'.$page_data->search_banner));
 
-        $ext = $request->file('search_banner')->extension();
-        $final_name = 'banner_search_'.time().'.'.$ext;
+            $ext = $request->file('search_banner')->extension();
+            $final_name = 'banner_search_'.time().'.'.$ext;
 
-        $request->file('search_banner')->move(public_path('uploads/'),$final_name);
+            $request->file('search_banner')->move(public_path('uploads/'),$final_name);
 
-        $page_data->search_banner = $final_name;
+            $page_data->search_banner = $final_name;
+        }
+
+        $page_data->search_seo_title = $request->search_seo_title;
+        $page_data->search_seo_meta_description = $request->search_seo_meta_description;
         $page_data->update();
 
         return redirect()->back()->with('success', 'Data is updated successfully.');

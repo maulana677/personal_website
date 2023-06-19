@@ -216,7 +216,7 @@
                                 elseif($item->month == '11') {$month='November';}
                                 elseif($item->month == '12') {$month='Desember';}
                                 @endphp
-                                <li><a href="">{{ $month }} {{ $item->year }} ({{ $item->total_post }})</a></li>
+                                <li><a href="{{ route('archive', [$item->month, $item->year]) }}">{{ $month }} {{ $item->year }} ({{ $item->total_post }})</a></li>
                             @endforeach
                         </ul>
                     </div>

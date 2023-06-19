@@ -47,6 +47,7 @@ Route::post('/contact/send-email', [ContactController::class, 'send_email'])->na
 Route::get('/blog', [PostController::class, 'index'])->name('blog');
 Route::get('/post/{slug}', [PostController::class, 'detail'])->name('post');
 Route::get('/category/{slug}', [PostController::class, 'category'])->name('category');
+Route::get('/archive/{month}/{year}', [PostController::class, 'archive'])->name('archive');
 
 // Admin
 Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin_home')->middleware('admin:admin');

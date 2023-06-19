@@ -23,6 +23,14 @@
                                     <div><input type="file" name="search_banner"></div>
                                 </div>
                                 <div class="mb-4">
+                                    <label class="form-label">SEO Title</label>
+                                    <input type="text" class="form-control" name="search_seo_title" value="{{ $page_data->search_seo_title }}">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">SEO Meta Description</label>
+                                    <textarea name="search_seo_meta_description" class="form-control h_100" cols="30" rows="10">{{ $page_data->search_seo_meta_description }}</textarea>
+                                </div>
+                                <div class="mb-4">
                                     <label class="form-label"></label>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>

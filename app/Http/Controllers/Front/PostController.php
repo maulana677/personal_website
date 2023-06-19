@@ -34,4 +34,13 @@ class PostController extends Controller
         $page_data = PageItem::where('id', 1)->first();
         return view('frontend.category', compact('posts','page_data', 'category_detail'));
     }
+
+    public function archive($month, $year)
+    {
+        //$category_detail = PostCategory::where('category_slug',$slug)->first();
+
+        $posts = Post::orderBy('id', 'desc')->get();
+        $page_data = PageItem::where('id', 1)->first();
+        return view('frontend.archive', compact('posts', 'page_data', 'month', 'year'));
+    }
 }
