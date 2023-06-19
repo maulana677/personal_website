@@ -172,9 +172,10 @@
                     <div class="widget">
                         <h2>Search</h2>
                         <div class="search">
-                            <form class="row g-3" action="" method="post">
+                            <form class="row g-3" action="{{ route('search') }}" method="post">
+                                @csrf
                                 <div class="col-auto">
-                                    <input type="text" class="form-control" placeholder="Search Anything ...">
+                                    <input type="text" class="form-control" placeholder="Search Anything ..." name="search_text">
                                 </div>
                                 <div class="col-auto">
                                     <button type="submit" class="btn btn-primary mb-3">Search</button>

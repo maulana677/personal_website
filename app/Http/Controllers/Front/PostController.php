@@ -37,10 +37,17 @@ class PostController extends Controller
 
     public function archive($month, $year)
     {
-        //$category_detail = PostCategory::where('category_slug',$slug)->first();
-
         $posts = Post::orderBy('id', 'desc')->get();
         $page_data = PageItem::where('id', 1)->first();
         return view('frontend.archive', compact('posts', 'page_data', 'month', 'year'));
+    }
+
+    public function search(Request $request)
+    {
+        $search_text = $request->search_text;
+        $search_text_filter = '%'.$search_text.'%';
+        $posts = Post::orderBy('id', 'desc')->where('title', 'like', $search_text_filter)->orWhere('description', 'like', $search_text_filter)->get();
+        $page_data = PageItem::where('id', 1)->first();
+        return view('frontend.search', compact('posts', 'page_data', 'search_text'));
     }
 }
