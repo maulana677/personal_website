@@ -210,6 +210,11 @@ Route::get('/admin/post/delete/{id}', [AdminPostController::class, 'delete'])->n
 // Comment 
 Route::get('/admin/comment/pending', [AdminPostController::class, 'comment_pending'])->name('admin_comment_pending')->middleware('admin:admin');
 Route::get('/admin/comment/make_approved/{id}', [AdminPostController::class, 'comment_make_approved'])->name('admin_comment_make_approved')->middleware('admin:admin');
+
+// Pending
+Route::get('/admin/comment/approved', [AdminPostController::class, 'comment_approved'])->name('admin_comment_approved')->middleware('admin:admin');
+Route::get('/admin/comment/make_pending/{id}', [AdminPostController::class, 'comment_make_pending'])->name('admin_comment_make_pending')->middleware('admin:admin');
+
 Route::get('/admin/comment/delete/{id}', [AdminPostController::class, 'comment_delete'])->name('admin_comment_delete')->middleware('admin:admin');
 
 // Blog

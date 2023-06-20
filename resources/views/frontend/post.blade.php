@@ -49,7 +49,7 @@
 
                     <h2>6 Comments</h2>
 
-                    <div class="comment-section">
+                    {{--  <div class="comment-section">
 
                         <div class="comment-box d-flex justify-content-start">
                             <div class="left">
@@ -93,45 +93,32 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div>  --}}
 
-
-                    <div class="comment-section">
-                        <div class="comment-box d-flex justify-content-start">
-                            <div class="left">
-                                <img src="images/t2.jpg" alt="">
-                            </div>
-                            <div class="right">
-                                <div class="name">John Doe</div>
-                                <div class="date">September 25, 2022</div>
-                                <div class="text">
-                                    Qui ea oporteat democritum, ad sed minimum offendit expetendis. Idque volumus platonem eos ut, in est verear delectus. Vel ut option adipisci consequuntur. Mei et solum malis detracto, has iuvaret invenire inciderint no. Id est dico nostrud invenire.
+                    @foreach ($comments as $item)
+                        <div class="comment-section">
+                            <div class="comment-box d-flex justify-content-start">
+                                <div class="left">
+                                    @php
+                                    $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $item->person_email ) ) ) . "?s=128";
+                                    @endphp
+                                    <img src="{{ $grav_url }}" alt="">
                                 </div>
-                                <div class="reply">
-                                    <a href=""><i class="fas fa-reply"></i> Reply</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="comment-section">
-                        <div class="comment-box d-flex justify-content-start">
-                            <div class="left">
-                                <img src="images/t3.jpg" alt="">
-                            </div>
-                            <div class="right">
-                                <div class="name">John Doe</div>
-                                <div class="date">September 25, 2022</div>
-                                <div class="text">
-                                    Qui ea oporteat democritum, ad sed minimum offendit expetendis. Idque volumus platonem eos ut, in est verear delectus. Vel ut option adipisci consequuntur. Mei et solum malis detracto, has iuvaret invenire inciderint no. Id est dico nostrud invenire.
-                                </div>
-                                <div class="reply">
-                                    <a href=""><i class="fas fa-reply"></i> Reply</a>
+                                <div class="right">
+                                    <div class="name">{{ $item->person_name }}</div>
+                                    <div class="date">
+                                        {{ $item->created_at->format('F').' '.$item->created_at->format('d').', '.$item->created_at->format('Y') }}
+                                    </div>
+                                    <div class="text">
+                                        {!! nl2br($item->person_comment) !!}
+                                    </div>
+                                    <div class="reply">
+                                        <a href=""><i class="fas fa-reply"></i> Reply</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
+                        </div> 
+                    @endforeach
 
                     <div class="mt_40"></div>
 

@@ -167,7 +167,26 @@ class AdminPostController extends Controller
 
     public function comment_make_approved($id)
     {
-        echo $id;
+        $obj = Comment::where('id',$id)->first();
+        $obj->status = 1;
+        $obj->update();
+
+        return redirect()->back()->with('success', 'Comment is approved successfully.');
+    }
+
+    public function comment_approved()
+    {
+        $approved_comments = Comment::with('rPost')->where('status',1)->get();
+        return view('admin.comment_approved', compact('approved_comments'));
+    }
+
+    public function comment_make_pending($id)
+    {
+        $obj = Comment::where('id',$id)->first();
+        $obj->status = 0;
+        $obj->update();
+
+        return redirect()->back()->with('success', 'Comment is pending successfully.');
     }
 
     public function comment_delete($id)

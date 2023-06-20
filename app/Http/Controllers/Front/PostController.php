@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Archive;
+use App\Models\Comment;
 use App\Models\PageItem;
 use App\Models\Post;
 use App\Models\PostCategory;
@@ -24,7 +25,8 @@ class PostController extends Controller
         $post_categories = PostCategory::orderBy('category_name', 'asc')->get();
         $post_detail = Post::with('rPostCategory')->where('slug',$slug)->first();
         $archives = Archive::orderBy('id', 'desc')->get();
-        return view('frontend.post', compact('post_detail', 'posts', 'post_categories', 'archives'));
+        $comments = Comment::where('status',1)->get();
+        return view('frontend.post', compact('post_detail', 'posts', 'post_categories', 'archives', 'comments'));
     }
 
     public function category($slug)
