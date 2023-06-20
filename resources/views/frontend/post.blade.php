@@ -113,7 +113,44 @@
                                         {!! nl2br($item->person_comment) !!}
                                     </div>
                                     <div class="reply">
-                                        <a href=""><i class="fas fa-reply"></i> Reply</a>
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}"><i class="fas fa-reply"></i> Reply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Reply Here</h1>
+                                        <button type="button" class="btn btn-close text-white" data-bs-dismiss="modal" aria-label="Close">X</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('reply_submit') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="post_id" value="{{ $post_detail->id }}">
+                                            <input type="hidden" name="comment_id" value="{{ $item->id }}">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <input type="text" class="form-control" placeholder="Name" name="name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <input type="text" class="form-control" placeholder="Email Address" name="email">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <textarea class="form-control" rows="3" placeholder="Comment" name="comment"></textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

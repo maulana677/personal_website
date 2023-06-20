@@ -7,6 +7,7 @@ use App\Models\Archive;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\PostCategory;
+use App\Models\Reply;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -192,6 +193,46 @@ class AdminPostController extends Controller
     public function comment_delete($id)
     {
         $row_data = Comment::where('id',$id)->first();
+        $row_data->delete();
+
+        return redirect()->back()->with('success', 'Data is deleted successfully.');
+    }
+
+    //------------------------------------------- Reply --------------------------------------------//
+
+    public function reply_pending()
+    {
+        $pending_replies = Reply::with('rPost')->where('status',0)->get();
+        return view('admin.reply_pending', compact('pending_replies'));
+    }
+
+    public function reply_make_approved($id)
+    {
+        $obj = Reply::where('id',$id)->first();
+        $obj->status = 1;
+        $obj->update();
+
+        return redirect()->back()->with('success', 'Reply is approved successfully.');
+    }
+
+    public function reply_approved()
+    {
+        $approved_replies = Reply::with('rPost')->where('status',1)->get();
+        return view('admin.reply_approved', compact('approved_replies'));
+    }
+
+    public function reply_make_pending($id)
+    {
+        $obj = Reply::where('id',$id)->first();
+        $obj->status = 0;
+        $obj->update();
+
+        return redirect()->back()->with('success', 'Reply is pending successfully.');
+    }
+
+    public function reply_delete($id)
+    {
+        $row_data = Reply::where('id',$id)->first();
         $row_data->delete();
 
         return redirect()->back()->with('success', 'Data is deleted successfully.');

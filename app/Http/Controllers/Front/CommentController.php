@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Reply;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -26,5 +27,26 @@ class CommentController extends Controller
         $obj->save();
 
         return redirect()->back()->with('success', 'Thank you for your comment. Admin will check it soon.');
+    }
+
+    public function reply_submit(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'comment' => 'required',
+        ]);
+
+        $obj = new Reply();
+        $obj->post_id = $request->post_id;
+        $obj->comment_id = $request->comment_id;
+        $obj->person_name = $request->name;
+        $obj->person_email = $request->email;
+        $obj->person_comment = $request->comment;
+        $obj->person_type = 'Visitor';
+        $obj->status = 0;
+        $obj->save();
+
+        return redirect()->back()->with('success', 'Thank you for your reply. Admin will check it soon.');
     }
 }
