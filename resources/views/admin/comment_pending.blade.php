@@ -22,6 +22,7 @@
                                     <th>Email</th>
                                     <th>Comment</th>
                                     <th>Action</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
