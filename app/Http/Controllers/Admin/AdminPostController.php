@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Archive;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
@@ -157,4 +158,24 @@ class AdminPostController extends Controller
 
         return redirect()->back()->with('success', 'Data is deleted successfully.');
     }
+
+    public function comment_pending()
+    {
+        $pending_comments = Comment::with('rPost')->where('status',0)->get();
+        return view('admin.comment_pending', compact('pending_comments'));
+    }
+
+    public function comment_make_approved($id)
+    {
+        echo $id;
+    }
+
+    public function comment_delete($id)
+    {
+        $row_data = Comment::where('id',$id)->first();
+        $row_data->delete();
+
+        return redirect()->back()->with('success', 'Data is deleted successfully.');
+    }
+
 }
