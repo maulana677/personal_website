@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminSkillController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\Front\CommentController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PortfolioController;
@@ -49,6 +50,7 @@ Route::get('/post/{slug}', [PostController::class, 'detail'])->name('post');
 Route::get('/category/{slug}', [PostController::class, 'category'])->name('category');
 Route::get('/archive/{month}/{year}', [PostController::class, 'archive'])->name('archive');
 Route::post('/search', [PostController::class, 'search'])->name('search');
+Route::post('/comment-submit', [CommentController::class, 'comment_submit'])->name('comment_submit');
 
 // Admin
 Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin_home')->middleware('admin:admin');

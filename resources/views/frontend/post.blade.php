@@ -77,9 +77,6 @@
                                 <div class="text">
                                     Qui ea oporteat democritum, ad sed minimum offendit expetendis. Idque volumus platonem eos ut, in est verear delectus. Vel ut option adipisci consequuntur. Mei et solum malis detracto, has iuvaret invenire inciderint no. Id est dico nostrud invenire.
                                 </div>
-                                <div class="reply">
-                                    <a href=""><i class="fas fa-reply"></i> Reply</a>
-                                </div>
                             </div>
                         </div>
 
@@ -92,9 +89,6 @@
                                 <div class="date">September 25, 2022</div>
                                 <div class="text">
                                     Qui ea oporteat democritum, ad sed minimum offendit expetendis. Idque volumus platonem eos ut, in est verear delectus. Vel ut option adipisci consequuntur. Mei et solum malis detracto, has iuvaret invenire inciderint no. Id est dico nostrud invenire.
-                                </div>
-                                <div class="reply">
-                                    <a href=""><i class="fas fa-reply"></i> Reply</a>
                                 </div>
                             </div>
                         </div>
@@ -143,24 +137,28 @@
 
                     <h2>Leave Your Comment</h2>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Name">
+                    <form action="{{ route('comment_submit') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="post_id" value="{{ $post_detail->id }}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Name" name="name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Email Address" name="email">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Email Address">
-                            </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="3" placeholder="Comment" name="comment"></textarea>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <textarea class="form-control" rows="3" placeholder="Comment"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
 
                     
                 </div>
