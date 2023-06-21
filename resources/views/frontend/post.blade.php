@@ -8,6 +8,13 @@
 {{ $post_detail->seo_meta_description }}
 @endsection
 
+@section('open_graph_data')
+<meta property="og:title" content="{{ $post_detail->title }}">
+<meta property="og:url" content="{{ route('post',$post_detail->slug) }}">
+<meta property="og:description" content="{{ $post_detail->short_description }}">
+<meta property="og:image" content="{{ asset('uploads/'.$post_detail->photo) }}">
+@endsection
+
 @section('main_content')
 
 <div class="page-banner" style="background-image: url({{ asset('uploads/'.$post_detail->banner ) }})">

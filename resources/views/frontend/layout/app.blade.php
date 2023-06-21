@@ -8,6 +8,8 @@
     <title>@yield('seo_title')</title>
     <meta name="description" value="@yield('seo_meta_description')">
 
+    @yield('open_graph_data')
+
     @include('frontend.layout.styles')
 
     <link rel="icon" type="image/png" href="{{ asset('dist_front/images/man.png') }}">
