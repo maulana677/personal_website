@@ -47,11 +47,15 @@
                 @if($post_detail->show_comment == 'Yes')
                 <div class="comment">
 
-                    <h2>6 Comments</h2>
+                    <h2>{{ $total_comments }} Comments</h2>
+
+                    @if($total_comments == 0)
+                        <span class="text-danger">No Comment is Found!</span>
+                    @endif
 
                     @foreach ($comments as $item)
                         <div class="comment-section">
-                            <div class="comment-box d-flex justify-content-start">
+                            <div class="comment-box d-flex justify-content-start @if($item->person_type == 'Admin') comment-box-admin @endif">
                                 <div class="left">
                                     @php
                                     $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $item->person_email ) ) ) . "?s=128";
@@ -73,7 +77,10 @@
                             </div>
                             
                             @foreach ($item->rReply as $item2)
-                                <div class="comment-box reply-box d-flex justify-content-start">
+                                @if($item2->status == 0)
+                                    @continue
+                                @endif
+                                <div class="comment-box reply-box d-flex justify-content-start @if($item2->person_type == 'Admin') comment-box-admin @endif">
                                     <div class="left">
                                         @php
                                             $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $item2->person_email ) ) ) . "?s=128";
@@ -101,29 +108,44 @@
                                         <button type="button" class="btn btn-close text-white" data-bs-dismiss="modal" aria-label="Close">X</button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('reply_submit') }}" method="post">
-                                            @csrf
-                                            <input type="hidden" name="post_id" value="{{ $post_detail->id }}">
-                                            <input type="hidden" name="comment_id" value="{{ $item->id }}">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <input type="text" class="form-control" placeholder="Name" name="name">
+                                        @if(Auth::guard('admin')->user())
+                                            <form action="{{ route('reply_submit_admin') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="post_id" value="{{ $post_detail->id }}">
+                                                <input type="hidden" name="comment_id" value="{{ $item->id }}">
+                                                <div class="mb-3">
+                                                    <textarea class="form-control" rows="3" placeholder="Comment" name="comment"></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('reply_submit') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="post_id" value="{{ $post_detail->id }}">
+                                                <input type="hidden" name="comment_id" value="{{ $item->id }}">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <input type="text" class="form-control" placeholder="Name" name="name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <input type="text" class="form-control" placeholder="Email Address" name="email">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <input type="text" class="form-control" placeholder="Email Address" name="email">
-                                                    </div>
+                                                <div class="mb-3">
+                                                    <textarea class="form-control" rows="3" placeholder="Comment" name="comment"></textarea>
                                                 </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <textarea class="form-control" rows="3" placeholder="Comment" name="comment"></textarea>
-                                            </div>
-                                            <div class="mb-3">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </form>
+                                                <div class="mb-3">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        @endif
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -135,6 +157,18 @@
 
                     <h2>Leave Your Comment</h2>
 
+                    @if(Auth::guard('admin')->user())
+                    <form action="{{ route('comment_submit_admin') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="post_id" value="{{ $post_detail->id }}">
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="3" placeholder="Comment" name="comment"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                    @else
                     <form action="{{ route('comment_submit') }}" method="post">
                         @csrf
                         <input type="hidden" name="post_id" value="{{ $post_detail->id }}">
@@ -157,6 +191,10 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+                    @endif
+
+                    
+                    
 
                     
                 </div>

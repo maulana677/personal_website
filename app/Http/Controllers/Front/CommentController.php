@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Reply;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -45,6 +46,43 @@ class CommentController extends Controller
         $obj->person_comment = $request->comment;
         $obj->person_type = 'Visitor';
         $obj->status = 0;
+        $obj->save();
+
+        return redirect()->back()->with('success', 'Thank you for your reply. Admin will check it soon.');
+    }
+
+    public function comment_submit_admin(Request $request)
+    {
+        $request->validate([
+            'comment' => 'required',
+        ]);
+
+        $obj = new Comment();
+        $obj->post_id = $request->post_id;
+        $obj->person_name = Auth::guard('admin')->user()->name;
+        $obj->person_email = Auth::guard('admin')->user()->email;
+        $obj->person_comment = $request->comment;
+        $obj->person_type = 'Admin';
+        $obj->status = 1;
+        $obj->save();
+
+        return redirect()->back()->with('success', 'Comment is submitted successfully!');
+    }
+
+    public function reply_submit_admin(Request $request)
+    {
+        $request->validate([
+            'comment' => 'required',
+        ]);
+
+        $obj = new Reply();
+        $obj->post_id = $request->post_id;
+        $obj->comment_id = $request->comment_id;
+        $obj->person_name = Auth::guard('admin')->user()->name;
+        $obj->person_email = Auth::guard('admin')->user()->email;
+        $obj->person_comment = $request->comment;
+        $obj->person_type = 'Admin';
+        $obj->status = 1;
         $obj->save();
 
         return redirect()->back()->with('success', 'Thank you for your reply. Admin will check it soon.');

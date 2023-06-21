@@ -1058,6 +1058,9 @@ nav .nav-item .nav-link:hover {
 .comment button:hover {
     background: #000 !important;
 }
+.comment .comment-box-admin {
+    background: #88da83;
+}
 @media only screen and (max-width: 767px) {
     .comment button {
         margin-bottom: 50px;

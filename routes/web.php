@@ -52,6 +52,8 @@ Route::get('/archive/{month}/{year}', [PostController::class, 'archive'])->name(
 Route::post('/search', [PostController::class, 'search'])->name('search');
 Route::post('/comment-submit', [CommentController::class, 'comment_submit'])->name('comment_submit');
 Route::post('/reply-submit', [CommentController::class, 'reply_submit'])->name('reply_submit');
+Route::post('/comment-submit-admin', [CommentController::class, 'comment_submit_admin'])->name('comment_submit_admin');
+Route::post('/reply-submit-admin', [CommentController::class, 'reply_submit_admin'])->name('reply_submit_admin');
 
 // Admin
 Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin_home')->middleware('admin:admin');
