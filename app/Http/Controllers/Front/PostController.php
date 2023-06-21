@@ -25,7 +25,7 @@ class PostController extends Controller
         $post_categories = PostCategory::orderBy('category_name', 'asc')->get();
         $post_detail = Post::with('rPostCategory')->where('slug',$slug)->first();
         $archives = Archive::orderBy('id', 'desc')->get();
-        $comments = Comment::where('status',1)->get();
+        $comments = Comment::with('rReply')->where('status',1)->get();
         return view('frontend.post', compact('post_detail', 'posts', 'post_categories', 'archives', 'comments'));
     }
 
