@@ -45,10 +45,14 @@
                     {!! nl2br($post_detail->description) !!}
                 </div>
                 
-                <div class="share">
-                    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=633263d3bfbc4500128cca2f&product=inline-share-buttons" async="async"></script>
+                {{--  <div class="share">
+                    <a class="social-media-icon" href="https://www.facebook.com/"><span class="fab fa-facebook"></span></a>
+                    <a class="social-media-icon" href="https://link_social_mendia_anda"><span class="fab fa-instagram"></span></a>
+                    <a class="social-media-icon" href="https://link_social_mendia_anda"><span class="fab fa-linkedin"></span></a>
+                    <a class="social-media-icon" href="https://link_social_mendia_anda"><span class="fab fa-whatsapp"></span></a>
+                    <a href="#" class="btn btn-primary"><i class="fab fa-facebook"></i>Facebook</a>
                     <div class="sharethis-inline-share-buttons"></div>
-                </div>
+                </div>  --}}
 
 
                 @if($post_detail->show_comment == 'Yes')

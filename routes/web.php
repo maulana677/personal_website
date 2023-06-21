@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminPostCategoryController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\Admin\AdminSettingController;
 use App\Http\Controllers\Admin\AdminSkillController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Front\AboutController;
@@ -245,3 +246,7 @@ Route::post('/admin/page/archive/update', [AdminPageController::class, 'archive_
 // Search
 Route::get('/admin/page/search', [AdminPageController::class, 'search'])->name('admin_page_search')->middleware('admin:admin');
 Route::post('/admin/page/search/update', [AdminPageController::class, 'search_update'])->name('admin_page_search_update')->middleware('admin:admin');
+
+// Setting
+Route::get('/admin/setting', [AdminSettingController::class, 'index'])->name('admin_setting')->middleware('admin:admin');
+Route::post('/admin/setting-update', [AdminSettingController::class, 'update'])->name('admin_setting_update')->middleware('admin:admin');

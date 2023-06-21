@@ -39,10 +39,10 @@
                     </div>
                     <div class="social">
                         <ul>
-                            <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.facebook.com/Maulana.Ikhsan44/"><i class="fab fa-facebook-f"></i></a></li>
                             <li><a href=""><i class="fab fa-twitter"></i></a></li>
                             <li><a href=""><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="https://www.instagram.com/maull_ikhsan/"><i class="fab fa-instagram"></i></a></li>
                         </ul>
                     </div>
                     <div class="copyright">

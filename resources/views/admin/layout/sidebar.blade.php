@@ -10,6 +10,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="{{ Request::is('admin/home') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_home') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Dashboard"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
+            <li class="{{ Request::is('admin/setting') ? "active" : "" }}"><a class="nav-link" href="{{ route('admin_setting') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Settings"><i class="fas fa-fire"></i> <span>Settings</span></a></li>
 
             <li class="menu-header">Master</li>
             <li class="nav-item dropdown {{ Request::is('admin/home-banner')||Request::is('admin/home-about')||Request::is('admin/home-skill')||Request::is('admin/home-qualification')||Request::is('admin/home-counter')||Request::is('admin/home-testimonial')||Request::is('admin/home-client')||Request::is('admin/home-service')||Request::is('admin/home-portfolio')||Request::is('admin/home-blog')||Request::is('admin/home-seo') ? "active" : "" }}">
