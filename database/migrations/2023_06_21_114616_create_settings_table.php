@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('logo');
             $table->text('favicon');
-            $table->text('logo_footer')->nullable();
+            $table->text('logo_footer');
             $table->text('footer_text')->nullable();
             $table->text('footer_icon_1')->nullable();
             $table->text('footer_icon_1_url')->nullable();

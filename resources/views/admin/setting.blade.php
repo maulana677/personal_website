@@ -12,7 +12,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin_setting_update') }}" method="post">
+                    <form action="{{ route('admin_setting_update') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Existing Footer Logo</label>
-                                    <div>
+                                    <div style="background:#e1e1e1">
                                         <img src="{{ asset('uploads/'.$setting_data->logo_footer) }}" alt="" class="w_200">
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Color</label>
-                                    <input type="text" class="form-control" name="theme_color" value="{{ $setting_data->theme_color }}">
+                                    <input type="text" class="form-control" name="theme_color" data-jscolor="{}" value="{{ $setting_data->theme_color }}">
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label"></label>
