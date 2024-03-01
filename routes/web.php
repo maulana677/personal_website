@@ -40,8 +40,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 //About
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-Route::get('/services', [ServiceController::class, 'index'])->name('services');
-Route::get('/service/{slug}', [ServiceController::class, 'detail'])->name('service_detail');
+// Route::get('/services', [ServiceController::class, 'index'])->name('services');
+// Route::get('/service/{slug}', [ServiceController::class, 'detail'])->name('service_detail');
 Route::get('/portfolios', [PortfolioController::class, 'index'])->name('portfolios');
 Route::get('/portfolio/{slug}', [PortfolioController::class, 'detail'])->name('portfolio_detail');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');

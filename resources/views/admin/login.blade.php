@@ -1,58 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Login &mdash; Stisla</title>
 
-    <link rel="icon" type="image/png" href="uploads/favicon.png">
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/modules/fontawesome/css/all.min.css">
 
-    <title>Admin Panel</title>
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="assets/modules/bootstrap-social/bootstrap-social.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <!-- Start GA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    @include('admin.layout.styles')
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    @include('admin.layout.scripts')
-
+        gtag('config', 'UA-94034622-3');
+    </script>
+    <!-- /END GA -->
 </head>
 
 <body>
-<div id="app">
-    <div class="main-wrapper">
+    <div id="app">
         <section class="section">
-            <div class="container container-login">
+            <div class="container mt-5">
                 <div class="row">
-                    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                        <div class="card card-primary border-box">
-                            <div class="card-header card-header-auth">
-                                <h4 class="text-center">Admin Panel Login</h4>
+                    <div
+                        class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                        <div class="login-brand">
+                            <img src="assets/img/stisla-fill.svg" alt="logo" width="100"
+                                class="shadow-light rounded-circle">
+                        </div>
+
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h4>Login</h4>
                             </div>
-                            <div class="card-body card-body-auth">
-                                @if(session()->get('success'))
-                                    <div class="text-success">
-                                        {{ session()->get('success') }}
-                                    </div>
-                                @endif
-                                
-                                <form method="POST" action="{{ route('admin_login_submit') }}">
+
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('admin_login_submit') }}" class="needs-validation"
+                                    novalidate="">
                                     @csrf
                                     <div class="form-group">
-                                        <input type="text" class="form-control @error('email') is-invalid
-                                        @enderror" name="email" placeholder="Email Address" value="{{ old('email') }}" autofocus>
+                                        <label for="email">Email</label>
+                                        <input id="email" type="email"
+                                            class="form-control @error('email') is-invalid
+                                        @enderror"
+                                            name="email" placeholder="Email Address" value="{{ old('email') }}"
+                                            autofocus>
                                         @error('email')
                                             <div class="text-danger">
                                                 {{ $message }}
                                             </div>
                                         @enderror
-                                        @if(session()->get('error'))
+                                        @if (session()->get('error'))
                                             <div class="text-danger">
                                                 {{ session()->get('error') }}
                                             </div>
                                         @endif
                                     </div>
+
                                     <div class="form-group">
-                                        <input type="password" class="form-control @error('password') is-invalid
-                                        @enderror" name="password" placeholder="Password">
+                                        <div class="d-block">
+                                            <label for="password" class="control-label">Password</label>
+                                            <div class="float-right">
+                                                <a href="auth-forgot-password.html" class="text-small">
+                                                    Forgot Password?
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <input id="password" type="password"
+                                            class="form-control @error('password') is-invalid
+                                        @enderror"
+                                            name="password" placeholder="Password">
                                         @error('password')
                                             <div class="text-danger">
                                                 {{ $message }}
@@ -60,28 +91,39 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                                             Login
                                         </button>
                                     </div>
-                                    <div class="form-group">
-                                        <div>
-                                            <a href="{{ route('admin_forget_password') }}">
-                                                Forget Password?
-                                            </a>
-                                        </div>
-                                    </div>
                                 </form>
+
                             </div>
+                        </div>
+                        <div class="simple-footer">
+                            Copyright &copy; Stisla 2018
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-</div>
 
-@include('admin.layout.scripts_footer')
+    <!-- General JS Scripts -->
+    <script src="assets/modules/jquery.min.js"></script>
+    <script src="assets/modules/popper.js"></script>
+    <script src="assets/modules/tooltip.js"></script>
+    <script src="assets/modules/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="assets/modules/moment.min.js"></script>
+    <script src="assets/js/stisla.js"></script>
 
+    <!-- JS Libraies -->
+
+    <!-- Page Specific JS File -->
+
+    <!-- Template JS File -->
+    <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/custom.js"></script>
 </body>
+
 </html>

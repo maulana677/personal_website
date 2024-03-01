@@ -10,6 +10,10 @@
 
     $('.icp_demo').iconpicker();
 
+    $(document).ready(function() {
+        $('.snote').summernote();
+    });
+
     $('.datepicker').datepicker({ format: "yyyy/mm/dd" });
     $('.timepicker').timepicker({
         icons:
@@ -18,16 +22,5 @@
             down: 'fa fa-angle-down'
         }
     });
-
-    ClassicEditor
-		.create( document.querySelector( '.editor' ), {
-			// toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-		} )
-		.then( editor => {
-			window.editor = editor;
-		} )
-		.catch( err => {
-			console.error( err.stack );
-		} );
 
 })(jQuery);
